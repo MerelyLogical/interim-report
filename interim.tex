@@ -147,7 +147,7 @@ Once this could be confirmed, we can start adding a selection of different funct
   \item Running key algorithms or their components;
   \item Experiment with other power efficiency improving techniques,
         such as undervolting;
-  \item Add support for different radix arithmetic;
+  \item Add support for configurable radix arithmetic;
   \item Allow graceful failures for the testbench in case of unintended
         behaviour for the arithmetic modules;
   \item Add an interactive UI to control the voltage and frequency at run time
@@ -202,14 +202,58 @@ This requires more control circuits in the hardware, or a more complex compiler.
 
 On-line arithmetic does not suffer from the first issue as it performs all
 arithmetic operations with MSD first~\cite{Ercegovac1}.
+Pipelining can be used with on-line arithmetic operators.
+This means the output digit of an earlier operation can be fed into the next
+operator before the earlier operation been fully complete.
 
+% REVISIT: Better diagram here
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=8cm]{img/Online}
+  \caption{Computing $y=\sqrt{(a+b)cd/(e-f)}$~\cite{Ercegovac1}}
+  \label{Online}
+\end{figure}
 
+As illustrated in figure~\ref{Online}, while each individual operation may
+take longer than its conventional counterpart, on-line arithmetic could provide
+a speed up if the operators are in serial.
+Individually, on-line arithmetic also sacrifices in terms of memory.
+As all computation are made MSD to LSD, the use of a redundant number system
+is compulsory.
+However, this redundancy also has its advantage in making the operators
+scalable.
+The time required per digit can be made independent of the length of the
+operands.~\cite{Trivedi1}
+
+A recent architecture proposal allows the precision of
+on-line arithmetic to be controlled at run-time~\cite{Zhao1}.
+Traditionally, this run-time control was restricted due to the parallel adders
+present in the multipliers and dividers.
+This architecture reuses a fixed-precision adder and stores residues in
+on-chip RAM.
+As such, a single piece of hardware can be used to calculate to any precision
+limited only by the size of the on-chip RAM.
+
+Another way that on-line arithmetic alleviates the problem of fixed precision
+falls out directly from its MSD-first nature.
+Suppose the output of a conventional ripple adder is sampled before
+it has completed its operation.
+In this case, the lower digits would have been completed, but the carry would
+not have reached the higher ones.
+This means the error on the result would be significant, as the top bits
+were still undetermined~\cite{Shi1}.
+
+However, if the output of an on-line adder is sampled before its completion,
+the lower bits would be the undetermined ones.
+This means the error of the operation would be small.
+With overclocking, on-line arithmetic would allow a run-time trade-off between
+precision and frequency~\cite{Shi2}.
 
 % explain high-radix
 \subsection{High-radix Arithmetic}
 
-
-Compared to existing research, the combination of high-radix and online is
+\subsection{High-radix On-line Arithmetic}
+Compared to existing research, the combination of high-radix and on-line is
 relatively novel, and to optimising it on a system level for popular FPGA
 accelerations such as neural networks would be innovative as well.
 With respect to the testbench, figuring out a system to obtain the optimal point
@@ -299,53 +343,44 @@ $$1 + 1 = 2$$
   \end{tabular}
 \end{table}
 
-\section{Illustrations}
-
-\begin{figure}[H]
-  \centering
-  \includegraphics[width=8cm]{img/placeholder}
-  \caption{Placeholder}
-  \label{ph}
-\end{figure}
-
 \begin{thebibliography}{1}
 
 \bibitem{Cy5DBWeb}
   Intel Corporation,
   ``\textit{Cyclone V SoC Development Kit and Intel SoC FPGA Embedded
   Development Suite}''.
-  Available at: \url{intel.com/content/www/us/en/programmable/products/
-  boards_and_kits/dev-kits/altera/kit-cyclone-v-soc.html}.
+  % Available at:\\\url{www.intel.com/content/www/us/en/programmable/products/
+  % boards_and_kits/dev-kits/altera/kit-cyclone-v-soc.html}.
 
 \bibitem{Cy5DBRM}
   Altera Corporation,
   ``\textit{Cyclone V SoC Development Board Reference Manual}'',
   2015.
-  Available at: \url{intel.com/content/dam/www/programmable/us/en/pdfs/
-  literature/manual/rm_cv_soc_dev_board.pdf}.
+  % Available at:\\\url{www.intel.com/content/dam/www/programmable/us/en/pdfs/
+  % literature/manual/rm_cv_soc_dev_board.pdf}.
 
 \bibitem{ZynqBrief}
   Xilinx, Inc,
   ``\textit{Zynq-7000 All Programmable SoC}'',
   2018.
-  Available at: \url{https://www.xilinx.com/support/documentation/
-  product-briefs/zynq-7000-product-brief.pdf}.
+  % Available at:\\\url{www.xilinx.com/support/documentation/
+  % product-briefs/zynq-7000-product-brief.pdf}.
 
 \bibitem{Brent1}
-  R. P. Brent,
+  R.P. Brent,
   ``\textit{A Regular Layout for Parallel Adders}'',
   \textit{IEEE Trans. Comput.}, vol. C-31, pp. 260-264,
   1982.
 
 \bibitem{Srinivas1}
   H.R. Srinivas, K.K. Parhi,
-  ``\textit{High-Speed VLSI Arithmetic Processor Architectures Using Hybrid Number
-  Representation}'',
+  ``\textit{High-Speed VLSI Arithmetic Processor Architectures Using Hybrid
+  Number Representation}'',
   \textit{J. of VLSI Sign. Process.}, vol. 4. pp. 177-198,
   1992.
 
 \bibitem{Zhao1}
-  Y. Zhao, J. Wickerson, G. A. Constantinides,
+  Y. Zhao, J. Wickerson, G.A. Constantinides,
   ``\textit{An Efficient Implementation of Online Arithmetic}'',
   \textit{Int. Conf. on Field-Programmable Technology},
   2016.
@@ -357,11 +392,32 @@ $$1 + 1 = 2$$
   1990.
 
 \bibitem{Ercegovac1}
-  M. D. Ercegovac,
+  M.D. Ercegovac,
   ``\textit{On-line Arithmetic: An Overview}'',
   \textit{28th Annual Technical Symposium}, pp. 86-93,
   Internaltional Society for Optics and Photonics,
   1984.
+
+\bibitem{Trivedi1}
+  K.S. Trivedi, M.D. Ercegovac,
+  ``\textit{On-line Algorithms for Division and Multiplication}'',
+  \textit{IEEE Trans. Comput.}, vol. C-26, no. 7, pp. 667-680,
+  1977.
+
+\bibitem{Shi1}
+  K. Shi, D. Boland, G.A. Constantinides,
+  ``\textit{Accuracy-Performance Tradeoffs on an FPGA through Overclocking}'',
+  \textit{Proc. Int. Symp. Field-Programmable Custom Computing Machines},
+  pp. 29-36,
+  2013.
+
+\bibitem{Shi2}
+  K. Shi, D. Boland, E. Stott, S. Bayliss, G.A. Constantinides,
+  ``\textit{Datapath Synthesis for Overclocking: Online Arithmetic for
+  Latency-Accuracy Trade-offs}'',
+  \textit{Proceedings of the 51st Annual Design Automation Conference},
+  pp. 1-6, ACM,
+  2014.
 
 \end{thebibliography}
 

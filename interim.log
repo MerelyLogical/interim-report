@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6930 64-bit) (preloaded format=pdflatex 2019.1.4)  7 JAN 2019 21:39
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6930 64-bit) (preloaded format=pdflatex 2019.1.4)  7 JAN 2019 23:20
 entering extended mode
 **D:/GitHub/fyp/interim-report/interim.tex
 (D:/GitHub/fyp/interim-report/interim.tex
@@ -332,70 +332,40 @@ Package pdftex.def Info: img/SoCStructure.png  used on input line 88.
  [1{C:/Users/Qieer/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}
 
 
- <./img/SoCStructure.png>] [2]
-LaTeX Font Info:    Try loading font information for U+msa on input line 288.
+ <./img/SoCStructure.png>]
+<img/Online.png, id=8, 566.86781pt x 325.96782pt>
+File: img/Online.png Graphic file (type png)
+<use img/Online.png>
+Package pdftex.def Info: img/Online.png  used on input line 212.
+(pdftex.def)             Requested size: 227.62204pt x 130.88716pt.
+LaTeX Font Info:    Try loading font information for U+msa on input line 213.
  ("E:\Programs Files\MiKTeX 2.9\tex/latex/amsfonts\umsa.fd"
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 288.
+LaTeX Font Info:    Try loading font information for U+msb on input line 213.
 
 ("E:\Programs Files\MiKTeX 2.9\tex/latex/amsfonts\umsb.fd"
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-)
-<img/placeholder.png, id=11, 1137.24875pt x 1027.84pt>
-File: img/placeholder.png Graphic file (type png)
-<use img/placeholder.png>
-Package pdftex.def Info: img/placeholder.png  used on input line 306.
-(pdftex.def)             Requested size: 227.62204pt x 205.72119pt.
-
-Underfull \hbox (badness 10000) in paragraph at lines 314--319
-[]\OT1/ptm/m/n/8 Intel Cor-po-ra-tion, ``\OT1/ptm/m/it/8 Cy-clone V SoC De-vel-
-op-ment Kit and
- []
-
-
-Underfull \hbox (badness 6575) in paragraph at lines 314--319
-\OT1/ptm/m/it/8 In-tel SoC FPGA Em-bed-ded De-vel-op-ment Suite\OT1/ptm/m/n/8 '
-'. Avail-able at:
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 314--319
-\OT1/ptm/m/n/8 intel . com / content / www / us / en / programmable / products 
-/ boards[]and[]
- []
-
-
-Underfull \hbox (badness 5147) in paragraph at lines 328--333
-[]\OT1/ptm/m/n/8 Xilinx, Inc, ``\OT1/ptm/m/it/8 Zynq-7000 All Pro-grammable SoC
-\OT1/ptm/m/n/8 '', 2018. Avail-
- []
-
-
-Underfull \hbox (badness 5245) in paragraph at lines 328--333
-\OT1/ptm/m/n/8 able at: $https : / / www . xilinx . com / support / documentati
-on / product-[]briefs /
- []
-
-[3
-
- <./img/placeholder.png>] (interim.aux) ) 
+) [2 <./img/Online.png>] [3] (interim.aux) ) 
 Here is how much of TeX's memory you used:
- 3955 strings out of 492946
- 62394 string characters out of 3135087
- 137760 words of memory out of 3000000
- 7794 multiletter control sequences out of 15000+200000
- 39402 words of font info for 84 fonts, out of 3000000 for 9000
+ 3956 strings out of 492946
+ 62364 string characters out of 3135087
+ 137771 words of memory out of 3000000
+ 7795 multiletter control sequences out of 15000+200000
+ 38895 words of font info for 83 fonts, out of 3000000 for 9000
  1143 hyphenation exceptions out of 8191
- 41i,8n,38p,303b,337s stack positions out of 5000i,500n,10000p,200000b,50000s
-{E:/Programs Files/MiKTeX 2.9/fonts/en
-c/dvips/base/8r.enc}<E:/Programs Files/MiKTeX 2.9/fonts/type1/public/amsfonts/c
-m/cmr10.pfb><E:/Programs Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr8.p
-fb><E:/Programs Files/MiKTeX 2.9/fonts/type1/urw/times/utmr8a.pfb><E:/Programs 
-Files/MiKTeX 2.9/fonts/type1/urw/times/utmri8a.pfb>
-Output written on interim.pdf (3 pages, 243638 bytes).
+ 41i,8n,38p,303b,250s stack positions out of 5000i,500n,10000p,200000b,50000s
+{E:/Programs Files/MiKTeX 2.9/fonts
+/enc/dvips/base/8r.enc}<E:/Programs Files/MiKTeX 2.9/fonts/type1/public/amsfont
+s/cmextra/cmex8.pfb><E:/Programs Files/MiKTeX 2.9/fonts/type1/public/amsfonts/c
+m/cmmi8.pfb><E:/Programs Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.
+pfb><E:/Programs Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr8.pfb><E:/P
+rograms Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy8.pfb><E:/Programs 
+Files/MiKTeX 2.9/fonts/type1/urw/times/utmr8a.pfb><E:/Programs Files/MiKTeX 2.9
+/fonts/type1/urw/times/utmri8a.pfb>
+Output written on interim.pdf (3 pages, 177203 bytes).
 PDF statistics:
- 33 PDF objects out of 1000 (max. 8388607)
+ 43 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  11 words of extra memory for PDF output out of 10000 (max. 10000000)
 
