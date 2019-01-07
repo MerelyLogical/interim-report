@@ -155,8 +155,7 @@ Once this could be confirmed, we can start adding a selection of different funct
 \end{enumerate}
 
 Depending on the time situation, more or less items on this list may be fulfilled.
-
-\subsection{Evaluation Metric}
+The method of evaluation will be discussed later in the evaluation chapter.
 
 % --------------------------------------------------------------------------------
 % --------------------------------------------------------------------------------
@@ -176,7 +175,46 @@ Depending on the time situation, more or less items on this list may be fulfille
 % feedback from your supervisor so the final write-up can be improved.
 
 % explain online
+% M. D. Ercegovac. On-line arithmetic: An overview
+% M. D. Ercegovac and T. Lang. Digital Arithmetic
+\subsection{On-line Arithmetic}
+Traditional proposals to achieving a faster and more efficient arithmetic
+operator have two common characteristics.
+One, their order operation may be different depending on the operation itself.
+A traditional adder, parallel or serial, generates its answers from the LSD to
+the MSD.
+A traditional divider design on the other hand, generates its answers from
+the MSD to the LSD~\cite{Brent1}\cite{Srinivas1}.
+
+Due to this inconsistency, arithmetic operators may be forced to compute
+word-by-word, waiting for all digits to finish in the previous operator before
+moving on to the next.~\cite{Zhao1}
+This means if a divider follows an adder of the same width, the divider has to
+wait until the adder complete its computation before it can start its own.
+
+The other commonality of traditional designs is that their precisions are
+specified design-time. Once built, a 32-bit adder always adds 32 bits together,
+as the hardware is fixed at run-time.
+A possible way of making it more efficient would be using SIMD
+instructions~\cite{Duncan1}, trying to combine smaller operations into a larger
+one that fits the hardware.
+This requires more control circuits in the hardware, or a more complex compiler.
+
+On-line arithmetic does not suffer from the first issue as it performs all
+arithmetic operations with MSD first~\cite{Ercegovac1}.
+
+
+
 % explain high-radix
+\subsection{High-radix Arithmetic}
+
+
+Compared to existing research, the combination of high-radix and online is
+relatively novel, and to optimising it on a system level for popular FPGA
+accelerations such as neural networks would be innovative as well.
+With respect to the testbench, figuring out a system to obtain the optimal point
+of operation of the FPGA, in terms of its voltage and frequency, would also
+require some advanced research.
 
 % --------------------------------------------------------------------------------
 % --------------------------------------------------------------------------------
@@ -191,13 +229,6 @@ Depending on the time situation, more or less items on this list may be fulfille
 % necessary altering the proposed work, is a vital way to ensure that the project
 % is finished in time. In projects with heavy implementation content you should
 % document what you have already completed.
-
-Compared to existing research, the combination of high-radix and online is
-relatively novel, and to optimising it on a system level for popular FPGA
-accelerations such as neural networks would be innovative as well.
-With respect to the testbench, figuring out a system to obtain the optimal point
-of operation of the FPGA, in terms of its voltage and frequency, would also
-require some advanced research.
 
 \subsection{Risks}
 A major risk of this project is related to its schedule and the existence of an
@@ -280,25 +311,57 @@ $$1 + 1 = 2$$
 \begin{thebibliography}{1}
 
 \bibitem{Cy5DBWeb}
-    Intel Corporation,
-    ``\textit{Cyclone V SoC Development Kit and Intel SoC FPGA Embedded
-    Development Suite}''.
-    Available at: \url{intel.com/content/www/us/en/programmable/products/
-    boards_and_kits/dev-kits/altera/kit-cyclone-v-soc.html}.
+  Intel Corporation,
+  ``\textit{Cyclone V SoC Development Kit and Intel SoC FPGA Embedded
+  Development Suite}''.
+  Available at: \url{intel.com/content/www/us/en/programmable/products/
+  boards_and_kits/dev-kits/altera/kit-cyclone-v-soc.html}.
 
 \bibitem{Cy5DBRM}
-    Altera Corporation,
-    ``\textit{Cyclone V SoC Development Board Reference Manual}'',
-    2015.
-    Available at: \url{intel.com/content/dam/www/programmable/us/en/pdfs/
-    literature/manual/rm_cv_soc_dev_board.pdf}.
+  Altera Corporation,
+  ``\textit{Cyclone V SoC Development Board Reference Manual}'',
+  2015.
+  Available at: \url{intel.com/content/dam/www/programmable/us/en/pdfs/
+  literature/manual/rm_cv_soc_dev_board.pdf}.
 
 \bibitem{ZynqBrief}
-    Xilinx, Inc,
-    ``\textit{Zynq-7000 All Programmable SoC}'',
-    2018.
-    Available at: \url{https://www.xilinx.com/support/documentation/
-    product-briefs/zynq-7000-product-brief.pdf}.
+  Xilinx, Inc,
+  ``\textit{Zynq-7000 All Programmable SoC}'',
+  2018.
+  Available at: \url{https://www.xilinx.com/support/documentation/
+  product-briefs/zynq-7000-product-brief.pdf}.
+
+\bibitem{Brent1}
+  R. P. Brent,
+  ``\textit{A Regular Layout for Parallel Adders}'',
+  \textit{IEEE Trans. Comput.}, vol. C-31, pp. 260-264,
+  1982.
+
+\bibitem{Srinivas1}
+  H.R. Srinivas, K.K. Parhi,
+  ``\textit{High-Speed VLSI Arithmetic Processor Architectures Using Hybrid Number
+  Representation}'',
+  \textit{J. of VLSI Sign. Process.}, vol. 4. pp. 177-198,
+  1992.
+
+\bibitem{Zhao1}
+  Y. Zhao, J. Wickerson, G. A. Constantinides,
+  ``\textit{An Efficient Implementation of Online Arithmetic}'',
+  \textit{Int. Conf. on Field-Programmable Technology},
+  2016.
+
+\bibitem{Duncan1}
+  R. Duncan,
+  ``\textit{A Survey of Parallel Computer Architectures}'',
+  \textit{Computer}, vol. 23, pp. 5-16,
+  1990.
+
+\bibitem{Ercegovac1}
+  M. D. Ercegovac,
+  ``\textit{On-line Arithmetic: An Overview}'',
+  \textit{28th Annual Technical Symposium}, pp. 86-93,
+  Internaltional Society for Optics and Photonics,
+  1984.
 
 \end{thebibliography}
 
