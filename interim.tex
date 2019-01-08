@@ -14,7 +14,7 @@
 \begin{document}
 
 \title{%
-  High-radix On-line Arithmetic Verification System\\
+  High radix On-line Arithmetic Verification System\\
   \large Final Year Project 1800478: Interim Report}
 \author{Zifan Wang, 01077639\\Imperial College London}
 
@@ -38,7 +38,7 @@
 % explicit reference.
 
 This project is a part of a larger project investigating the effect of using
-high-radix number systems with on-line arithmetic operators.
+high radix number systems with on-line arithmetic operators.
 The overarching aim would involve implementing such a system on FPGA and
 quantifying its performance improvements.
 This aim would be achieved through two vertically split individual projects.
@@ -246,16 +246,40 @@ were still undetermined~\cite{Shi1}.
 However, if the output of an on-line adder is sampled before its completion,
 the lower bits would be the undetermined ones.
 This means the error of the operation would be small.
-With overclocking, on-line arithmetic would allow a run-time trade-off between
-precision and frequency~\cite{Shi2}.
+With overclocking, on-line arithmetic would fail gracefully, losing its
+precision gradually from the lowest bits first.
+Thus, it allows for a run-time trade-off between precision and
+frequency~\cite{Shi2}.
 
-% explain high-radix
-\subsection{High-radix Arithmetic}
+% explain high radix
+\subsection{High radix Arithmetic}
+Conventional designs of arithmetic operators use binary representations.
+This was chosen four decades ago to maximise numerical accuracy per bit of data.
+However, using a high radix representation system could yield better numerical
+accuracy while reducing area cost of FPGAs.
+For example, a hexadecimal floating-point adder has a 30\% smaller area-time
+product than its binary counterpart, while still delivering equal worst-case
+and better average-case numerical accuracy~\cite{Catanzaro1}.
 
-\subsection{High-radix On-line Arithmetic}
-Compared to existing research, the combination of high-radix and on-line is
+However, the savings are not without trade-offs.
+This trade-off can become unfavourable if the specification requires much I/O
+and little computation~\cite{Whyte1}.
+This is because the overhead of radix conversion would be significant.
+It is also unwise to use high radix representations when the numbers are
+unusually small, thus making the savings offered by the high radix
+negligible~\cite{Catanzaro1}.
+
+\subsection{High radix On-line Arithmetic}
+% ~\cite{Lynch1}~\cite{Lynch2}
+Using high radix number representations for on-line arithmetic is a
+relatively novel concept.
+While there have been some research in this field, they are 
+
+Compared to existing research, the combination of high radix and on-line is
 relatively novel, and to optimising it on a system level for popular FPGA
 accelerations such as neural networks would be innovative as well.
+
+
 With respect to the testbench, figuring out a system to obtain the optimal point
 of operation of the FPGA, in terms of its voltage and frequency, would also
 require some advanced research.
@@ -415,9 +439,37 @@ $$1 + 1 = 2$$
   K. Shi, D. Boland, E. Stott, S. Bayliss, G.A. Constantinides,
   ``\textit{Datapath Synthesis for Overclocking: Online Arithmetic for
   Latency-Accuracy Trade-offs}'',
-  \textit{Proceedings of the 51st Annual Design Automation Conference},
+  \textit{Proceedings of the 13th Symposium on Field-Programmable Custom
+  Computing Machines},
   pp. 1-6, ACM,
   2014.
+
+\bibitem{Whyte1}
+  P. Whyte,
+  ``\textit{Design and Implementation of High-radix Arithmetic Systems Based
+  on the SDNR/RNS Data Representation}''
+  \textit{Edith Cowan University},
+  1997.
+
+\bibitem{Catanzaro1}
+  B. Catanzaro, B. Nelson,
+  ``\textit{Higher Radix Floating-Point Representations for FPGA-Based
+  Arithmetic}'',
+  \textit{Proceedings of the 51st Annual Design Automation Conference},
+  2005.
+
+\bibitem{Lynch1}
+  T. Lynch, M.J. Schulte,
+  ``\textit{A High Radix On-line Arithmetic for Credible and Accurate
+  Computing}'',
+  \textit{Journal of Universal Computer Science}, vol. 1, no. 7, pp. 439-453,
+  1995.
+
+\bibitem{Lynch2}
+  T. Lynch, M.J. Schulte,
+  ``\textit{Software for High Radix On-line Arithmetic}'',
+  \textit{Reliable Computing}, vol. 2, no. 2, pp. 133-138,
+  1996.
 
 \end{thebibliography}
 
