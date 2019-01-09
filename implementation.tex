@@ -1,0 +1,38 @@
+\section{Implementation Plan}
+% The implementation plan is a preliminary breakdown of the work that is to be
+% done in the remainder of the project. You should identify a set of milestones
+% and provide a realistic estimate of when each of these should be completed if
+% all goes well. It should also detail fallback positions in case any stage of the
+% development goes wrong. You may feel, in the early stages of your project work,
+% that the times in this plan are guesses. However you will find as the project
+% progresses that keeping track of and revising your initial estimates, and if
+% necessary altering the proposed work, is a vital way to ensure that the project
+% is finished in time. In projects with heavy implementation content you should
+% document what you have already completed.
+
+
+\subsection{Milestones}
+The initial deliverable for the engineering side involves running a simple
+program on the FPGA through the HPS with the FPGA frequency being controllable.
+After this, the next critical step would be making sure the modules under test
+will be the point of failure and not the testbench.
+This would include some research on ways in improving the speed of feeding
+inputs to the arithmetic units, and checking its outputs.
+Once this could be confirmed, we can start adding a selection of different functionalities.
+
+\begin{enumerate}
+  \item Running standard benchmarks;
+  \item Running key algorithms or their components;
+  \item Experiment with other power efficiency improving techniques,
+        such as undervolting;
+  \item Add support for configurable radix arithmetic;
+  \item Allow graceful failures for the testbench in case of unintended
+        behaviour for the arithmetic modules;
+  \item Add an interactive UI to control the voltage and frequency at run time
+        and examine the DUT’s behaviour;
+\end{enumerate}
+
+Depending on the time situation, more or less items on this list may be fulfilled.
+The method of evaluation will be discussed later in the evaluation chapter.
+
+\subsection{Work to Date}

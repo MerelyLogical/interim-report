@@ -1,0 +1,120 @@
+\section{Background Research}
+% The background section must outline the necessary background to the project,
+% stating how it is important for the project work. For example: survey of related
+% literature, analysis of competing products, technical specifications of hardware
+% or software standards, electronic components, necessary software tools,
+% background theory. The contents of this section will vary for different
+% projects, and in many cases the background reading will have been completed –
+% but if not you should be in a position to list what remains to be done (e.g. a
+% set of research papers to read and understand). A good benchmark of progress
+% here is that you have accumulated (though may not yet have read) at least 20
+% references to background material. In projects which have substantial background
+% writing up your literature survey in the Interim Report will save time at the
+% end of the project and allow this element of your final report to receive timely
+% feedback from your supervisor so the final write-up can be improved.
+% REVISIT: Better logic between serial and parallel operators
+
+\subsection{On-line Arithmetic}
+Traditional proposals to achieving a faster and more efficient arithmetic
+operator have two common characteristics.
+One, their order operation may be different depending on the operation itself.
+A traditional adder, parallel or serial, generates its answers from the LSD to
+the MSD.
+A traditional divider design on the other hand, generates its answers from
+the MSD to the LSD~\cite{Brent1}\cite{Srinivas1}.
+
+Due to this inconsistency, arithmetic operators may be forced to compute
+word-by-word, waiting for all digits to finish in the previous operator before
+moving on to the next.~\cite{Zhao1}
+This means if a divider follows an adder of the same width, the divider has to
+wait until the adder complete its computation before it can start its own.
+
+The other commonality of traditional designs is that their precisions are
+specified design-time. Once built, a 32-bit adder always adds 32 bits together,
+as the hardware is fixed at run-time.
+A possible way of making it more efficient would be using SIMD
+instructions~\cite{Duncan1}, trying to combine smaller operations into a larger
+one that fits the hardware.
+This requires more control circuits in the hardware, or a more complex compiler.
+
+On-line arithmetic does not suffer from the first issue as it performs all
+arithmetic operations with MSD first~\cite{Ercegovac1}.
+Pipelining can be used with on-line arithmetic operators.
+This means the output digit of an earlier operation can be fed into the next
+operator before the earlier operation been fully complete.
+
+% REVISIT: Better diagram here
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=8cm]{img/Online}
+  \caption{Computing $y=\sqrt{(a+b)cd/(e-f)}$~\cite{Ercegovac1}}
+  \label{Online}
+\end{figure}
+
+As illustrated in figure~\ref{Online}, while each individual operation may
+take longer than its conventional counterpart, on-line arithmetic could provide
+a speed up if the operators are in serial.
+Individually, on-line arithmetic also sacrifices in terms of memory.
+As all computation are made MSD to LSD, the use of a redundant number system
+is compulsory.
+However, this redundancy also has its advantage in making the operators
+scalable.
+The time required per digit can be made independent of the length of the
+operands.~\cite{Trivedi1}
+
+A recent architecture proposal allows the precision of
+on-line arithmetic to be controlled at run-time~\cite{Zhao1}.
+Traditionally, this run-time control was restricted due to the parallel adders
+present in the multipliers and dividers.
+This architecture reuses a fixed-precision adder and stores residues in
+on-chip RAM.
+As such, a single piece of hardware can be used to calculate to any precision
+limited only by the size of the on-chip RAM.
+
+Another way that on-line arithmetic alleviates the problem of fixed precision
+falls out directly from its MSD-first nature.
+Suppose the output of a conventional ripple adder is sampled before
+it has completed its operation.
+In this case, the lower digits would have been completed, but the carry would
+not have reached the higher ones.
+This means the error on the result would be significant, as the top bits
+were still undetermined~\cite{Shi1}.
+
+However, if the output of a serial on-line adder is sampled before its
+completion, the lower bits would be the undetermined ones.
+This means the error of the operation would be small.
+With overclocking, on-line arithmetic would fail gracefully, losing its
+precision gradually from the lowest bits first.
+Thus, it allows for a run-time trade-off between precision and
+frequency~\cite{Shi2}.
+
+\subsection{High radix Arithmetic}
+Conventional designs of arithmetic operators use binary representations.
+This was chosen four decades ago to maximise numerical accuracy per bit of data.
+However, using a high radix representation system could yield better numerical
+accuracy while reducing area cost of FPGAs.
+For example, a hexadecimal floating-point adder has a 30\% smaller area-time
+product than its binary counterpart, while still delivering equal worst-case
+and better average-case numerical accuracy~\cite{Catanzaro1}.
+
+However, the savings are not without trade-offs.
+This trade-off can become unfavourable if the specification requires much I/O
+and little computation~\cite{Whyte1}.
+This is because the overhead of radix conversion would be significant.
+It is also unwise to use high radix representations when the numbers are
+unusually small, thus making the savings offered by the high radix
+negligible~\cite{Catanzaro1}.
+
+\subsection{High radix On-line Arithmetic}
+Using high radix number representations for on-line arithmetic is a
+relatively novel concept.
+% REVISIT: can find problem with Lynch?
+While there have been some research in this field~\cite{Lynch1}\cite{Lynch2},
+this project takes a more direct approach by implementing custom operators
+made for high radix on-line arithmetic on a FPGA.
+This would allow for empirical results to be obtained, hopefully revealing
+practical insights to the method.
+
+As an potential extension to the project, optimising this exotic arithmetic
+on a system level for popular FPGA accelerations such as neural networks would
+be innovative as well.

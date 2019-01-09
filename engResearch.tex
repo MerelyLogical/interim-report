@@ -1,0 +1,88 @@
+\section{Engineering Background}
+% REVISIT: what to put here?
+% research on possible architectures
+% hardware of FPGA
+% speed of memory
+% launch registers
+% PLLs
+% HLS vs Verilog?
+% LFSR
+
+\subsection{Target}
+The design of the verification system is the major engineering challenge of this
+project.
+In order to stress the DUT, the verification system must perform at a much
+higher frequency than the expected frequency of the DUT.
+Assuming the DUT is to run at 300MHz, to fully explore the effect of
+overclocking, the testbench must be able to run at double the frequency or
+higher.
+This gives a target frequency of 800MHz.
+Assuming data width of 32-bits, the target data transfer rate is then 
+This required data transfer rate is estimated to be 25.6Gbps.
+
+\subsection{Data Transfer Rate}
+% REVISIT: possible to find exact bandwidth of the bridge?
+As the test is to be run on the HPS, the HPS-FPGA bridge will be the
+immediate bottleneck if the test data is to flow from HPS to FPGA.
+While HPS is able to easily generate test data,
+there is a large amount of overhead as data crosses from one architecture
+to another.
+This overhead exists in terms of both a lowered bandwidth and a high delay.
+Thus, it would not be sensible for HPS to send out data during run-time.
+
+% --- using SDRAM
+Another thought may be to first populate the off-chip DDR SDRAM on FPGA
+side, then feed the data from there to the DUT during test.
+This is already much faster than passing the data from HPS.
+The 1GB, 32-bits wide DDR3 on FPGA side is rated at 400MHz.
+With double rate transfer, this would gives a maximum transfer rate of 25.6Gbps.
+
+While using the off-chip RAM may theoretically achieve the targets,
+it still has its disadvantages.
+First, the process of filling up the memory and then using them for the tests
+takes time.
+This means the test would be broken up into bursts with time in between for
+checking the results and filling up with new data.
+The complexity of the SDRAM interface also requires a SDRAM controller to be
+used to manage SDRAM refresh cycles, address multiplexing and interface timing.
+These all adds up to a significant access latency.
+While this could be overcame with burst accesses and piplined accesses,
+it would further complicate the SDRAM controller.
+While this controller is provided by Altera~\cite{Altera3}, it is consumes
+a non-negligible amount of the limited FPGA resources, while adding
+unnecessary complexity to the design.
+Customising the controller to fit this project may also be time-consuming.
+
+% --- on-chip memory
+The on-chip memory is much faster and simpler to handle.
+This memory is implemented on the FPGA itself, and thus there is no external
+connections for access to this memory.
+It has the highest possible throughput, with the lowest possible latency
+in an FPGA-based system.
+The memory transactions can also be piplined, giving one transaction per
+clock cycle.
+With an on-chip FIFO accessed in dual-port mode, the write at one end and the
+reads at the other end can happen simultaneously.
+This effective doubling of the bandwidth is useful as tests are prepared
+and fed into the DUT, or when test results are collected and fed to a checker.
+
+On-chip memory is not without its drawbacks.
+It is volatile and very limited in capacity.
+While the off-chip can have its storage reaching 1GB, that of the on-chip
+memory could only reach a few MB~\cite{Altera2}.
+Volatility is not exactly of concern in this project, but its small capacity
+means not much test data can be held before it needs more fed in.
+
+Looking at the options listed above, with a way of generating test data at
+run-time on the FPGA, using on-chip memory would be the most sensible option.
+
+
+\subsection{Clock Domains}
+
+
+\subsection{Testbench Architecture}
+\input{tikztest}
+
+% use this after different clock speeds are introduced
+Chapter 4 of Shi's paper~\cite{Shi1} provides a similar structure for this
+verification system.
