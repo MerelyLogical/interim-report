@@ -44,12 +44,20 @@ This means the output digit of an earlier operation can be fed into the next
 operator before the earlier operation been fully complete.
 
 % REVISIT: Better diagram here
+% \begin{figure}[H]
+%   \centering
+%   \includegraphics[width=8cm]{img/Online}
+%   \caption{Computing $y=\sqrt{(a+b)cd/(e-f)}$~\cite{Ercegovac1}}
+%   \label{Online}
+% \end{figure}
+
 \begin{figure}[H]
   \centering
-  \includegraphics[width=8cm]{img/Online}
+  \input{online}
   \caption{Computing $y=\sqrt{(a+b)cd/(e-f)}$~\cite{Ercegovac1}}
   \label{Online}
 \end{figure}
+
 
 As illustrated in figure~\ref{Online}, while each individual operation may
 take longer than its conventional counterpart, on-line arithmetic could provide

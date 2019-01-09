@@ -78,7 +78,13 @@ run-time on the FPGA, using on-chip memory would be the most sensible option.
 
 
 \subsection{Clock Domains}
+Another concern in the system design is of the different clock domains that
+must exist on the FPGA.
+At a minimum, there needs to be two clock domains, one surrounds the DUT and
+another supports the rest of the control logic around the DUT.
 
+These clock frequencies can be generated and distributed with PLLs provided as
+an IP in the Quartus software~\cite{Altera4}.
 
 \subsection{Testbench Architecture}
 \input{tikztest}
