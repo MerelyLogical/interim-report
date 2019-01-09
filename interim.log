@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6880 64-bit) (preloaded format=pdflatex 2018.12.8)  8 JAN 2019 15:16
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6880 64-bit) (preloaded format=pdflatex 2018.12.8)  9 JAN 2019 15:06
 entering extended mode
 **C:/A/git/interim-report/interim.tex
 (C:/A/git/interim-report/interim.tex
@@ -395,10 +395,10 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 <img/SoCStructure.png, id=16, 688.07062pt x 423.83344pt>
 File: img/SoCStructure.png Graphic file (type png)
 <use img/SoCStructure.png>
-Package pdftex.def Info: img/SoCStructure.png  used on input line 244.
+Package pdftex.def Info: img/SoCStructure.png  used on input line 231.
 (pdftex.def)             Requested size: 227.62204pt x 140.20822pt.
  [3 <./img/SoCStructure.png>] [4]
-LaTeX Font Info:    Try loading font information for OMS+ptm on input line 566.
+LaTeX Font Info:    Try loading font information for OMS+ptm on input line 655.
 
 
 ("C:\Users\MerelyLogical\AppData\Local\Programs\MiKTeX 2.9\tex\latex\psnfss\oms
@@ -406,34 +406,32 @@ ptm.fd"
 File: omsptm.fd 
 )
 LaTeX Font Info:    Font shape `OMS/ptm/m/it' in size <8> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 566.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 655.
 LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <8> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 566.
- [5
-
-] (interim.aux) ) 
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 655.
+ [5] (interim.aux) ) 
 Here is how much of TeX's memory you used:
- 3988 strings out of 492969
- 65107 string characters out of 3123034
- 138336 words of memory out of 3000000
- 7796 multiletter control sequences out of 15000+200000
+ 3990 strings out of 492969
+ 65125 string characters out of 3123034
+ 138344 words of memory out of 3000000
+ 7798 multiletter control sequences out of 15000+200000
  41587 words of font info for 86 fonts, out of 3000000 for 9000
  1143 hyphenation exceptions out of 8191
  41i,8n,38p,298b,265s stack positions out of 5000i,500n,10000p,200000b,50000s
-{C:/Users/MerelyLogical/AppData/Local/Programs/MiKTeX 2.9/font
-s/enc/dvips/base/8r.enc}<C:/Users/MerelyLogical/AppData/Local/Programs/MiKTeX 2
-.9/fonts/type1/public/amsfonts/cmextra/cmex8.pfb><C:/Users/MerelyLogical/AppDat
-a/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Users/
-MerelyLogical/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/
-cmr10.pfb><C:/Users/MerelyLogical/AppData/Local/Programs/MiKTeX 2.9/fonts/type1
-/public/amsfonts/cm/cmr8.pfb><C:/Users/MerelyLogical/AppData/Local/Programs/MiK
-TeX 2.9/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Users/MerelyLogical/AppDat
-a/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Users/
-MerelyLogical/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/urw/times/utmb8a.pf
-b><C:/Users/MerelyLogical/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/urw/tim
-es/utmr8a.pfb><C:/Users/MerelyLogical/AppData/Local/Programs/MiKTeX 2.9/fonts/t
-ype1/urw/times/utmri8a.pfb>
-Output written on interim.pdf (5 pages, 204659 bytes).
+{C:/Users/MerelyLogical/AppData/Local/Programs/MiKTeX 2.9/f
+onts/enc/dvips/base/8r.enc}<C:/Users/MerelyLogical/AppData/Local/Programs/MiKTe
+X 2.9/fonts/type1/public/amsfonts/cmextra/cmex8.pfb><C:/Users/MerelyLogical/App
+Data/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Use
+rs/MerelyLogical/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/
+cm/cmr10.pfb><C:/Users/MerelyLogical/AppData/Local/Programs/MiKTeX 2.9/fonts/ty
+pe1/public/amsfonts/cm/cmr8.pfb><C:/Users/MerelyLogical/AppData/Local/Programs/
+MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Users/MerelyLogical/App
+Data/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Use
+rs/MerelyLogical/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/urw/times/utmb8a
+.pfb><C:/Users/MerelyLogical/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/urw/
+times/utmr8a.pfb><C:/Users/MerelyLogical/AppData/Local/Programs/MiKTeX 2.9/font
+s/type1/urw/times/utmri8a.pfb>
+Output written on interim.pdf (5 pages, 207761 bytes).
 PDF statistics:
  57 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
