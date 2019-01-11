@@ -6,12 +6,46 @@
 % to other products or research results.
 
 \subsection{Metrics}
-In order to evaluate the progress and success of the project, the difficulties
-of the deliverables need to be analysed first.
+One natural way of measuring the success of the project is to look at the actual
+progress and comparing it to the plan given in the implementation plan.
+It should be noted that no plan is perfect, so some deviation is allowed.
+However, if there is significant delay from the implementation plan, there must
+be justifications given.
 
+The next few measures looks at the performance of the final product.
 
+First, the maximum stress of that the testbench and provide without failing can
+be used as a success measure.
+A testbench with a higher maximum frequency can reveal a wider picture in the
+performance of the DUT.
+This would hopefully allow more insights to be gained regarding the DUT, or
+it could mean that the testbench can be used for future designs that may be
+faster than the current one.
 
-\subsection{Risks}
+The Robustness of the testbench is also vital to the product's performance.
+The testbench should be free from errors within a reasonable operating range.
+If the testbench becomes unreliable with some minor changes to the system,
+the data that can be obtained would be very limited.
+The failure of the DUT can no longer be confirmed, as the error may be in the
+testbench instead of the DUT.
+
+The ease of use of the testbench could be another evaluation point.
+On the hardware side, the verification system can be packaged into a Qsys
+module.
+Given the DUT is also a module with an agreed interface, they could be easily
+connected in Qsys for testing.
+For example, the DUT may be written in VHDL for its deterministic nature, but
+the testbench maybe written in Verilog for its simplicity, but as both can be
+synthesised into a module, they would still be compatible in Qsys.
+On the software side, a user-friendly interface could be built.
+A usable command line interface maybe good enough, but a simple graphic
+interface could make the tests much more visual and interesting.
+
+The interface could also provide information on the failure in the DUT.
+A better testbench would provide more insightful details when the DUT fails.
+This would make debugging or evaluating the design much simpler.
+
+\subsection{Fallbacks}
 A major risk of this project is related to its schedule and the existence of an
 initial blocking task.
 While most of the later sections of the project can be selectively added or
@@ -38,3 +72,5 @@ student.
 In all, it would be nice to have a solid arithmetic module completely to run
 in this testbench, but without one, the system can still be built and completed,
 albeit generating less useful data towards the overall aim of the project.
+
+\subsection{Extensions}
