@@ -14,9 +14,11 @@
 % feedback from your supervisor so the final write-up can be improved.
 % REVISIT: Better logic between serial and parallel operators. The project is
 % REVISIT: mostly with parallel operators so limit the background for serial.
+% REVIIST: parallel online adder max freq can be independent of precision.
+% REVISIT: so no point over clocking an adder?
 
 \subsection{On-line Arithmetic}
-Traditional proposals to achieving a faster and more efficient arithmetic
+Traditional designs to achieve a faster and more efficient arithmetic
 operator have two common characteristics.
 One, their order operation may be different depending on the operation itself.
 A traditional adder, parallel or serial, generates its answers from the LSD to
@@ -81,7 +83,7 @@ not have reached the higher ones.
 This means the error on the result would be significant, as the top bits
 were still undetermined~\cite{Shi1}.
 
-However, if the output of a serial on-line adder is sampled before its
+However, if the output of a parallel on-line adder is sampled before its
 completion, the lower bits would be the undetermined ones.
 This means the error of the operation would be small.
 With overclocking, on-line arithmetic would fail gracefully, losing its
