@@ -43,21 +43,12 @@ Pipelining can be used with on-line arithmetic operators.
 This means the output digit of an earlier operation can be fed into the next
 operator before the earlier operation been fully complete.
 
-% REVISIT: Better diagram here
-% \begin{figure}[H]
-%   \centering
-%   \includegraphics[width=8cm]{img/Online}
-%   \caption{Computing $y=\sqrt{(a+b)cd/(e-f)}$~\cite{Ercegovac1}}
-%   \label{Online}
-% \end{figure}
-
 \begin{figure}[H]
   \centering
   \input{online}
   \caption{Computing $y=\sqrt{(a+b)cd/(e-f)}$~\cite{Ercegovac1}}
   \label{Online}
 \end{figure}
-
 
 As illustrated in figure~\ref{Online}, while each individual operation may
 take longer than its conventional counterpart, on-line arithmetic could provide
@@ -116,7 +107,7 @@ negligible~\cite{Catanzaro1}.
 \subsection{High radix On-line Arithmetic}
 Using high radix number representations for on-line arithmetic is a
 relatively novel concept.
-% REVISIT: can find problem with Lynch?
+% REVISIT: can find problem with Lynch? his high radix looks weird
 While there have been some research in this field~\cite{Lynch1}\cite{Lynch2},
 this project takes a more direct approach by implementing custom operators
 made for high radix on-line arithmetic on a FPGA.
