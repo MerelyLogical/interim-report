@@ -41,8 +41,8 @@ one that fits the hardware.
 This requires more control circuits in the hardware, or a more complex compiler.
 
 On-line arithmetic does not suffer from the first issue as it performs all
-arithmetic operations with MSD first~\cite{Ercegovac1}.
-Pipelining can be used with on-line arithmetic operators.
+arithmetic operations with MSD first~\cite{Ercegovac1}~\cite{Ercegovac2}.
+Pipelining can be used with on-line serial arithmetic operators.
 This means the output digit of an earlier operation can be fed into the next
 operator before the earlier operation been fully complete.
 
@@ -74,7 +74,7 @@ on-chip RAM.
 As such, a single piece of hardware can be used to calculate to any precision
 limited only by the size of the on-chip RAM.
 
-Another way that on-line arithmetic alleviates the problem of fixed precision
+The way on-line arithmetic alleviates the problem of fixed precision
 falls out directly from its MSD-first nature.
 Suppose the output of a conventional ripple adder is sampled before
 it has completed its operation.
