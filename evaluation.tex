@@ -13,7 +13,6 @@ However, if there is significant delay from the implementation plan, there must
 be justifications given.
 
 The next few measures looks at the performance of the final product.
-
 First, the maximum stress of that the testbench and provide without failing can
 be used as a success measure.
 A testbench with a higher maximum frequency can reveal a wider picture in the
@@ -21,6 +20,8 @@ performance of the DUT.
 This would hopefully allow more insights to be gained regarding the DUT, or
 it could mean that the testbench can be used for future designs that may be
 faster than the current one.
+As the main quantitative metric, this would be a vital indicator of the
+project's success.
 
 The Robustness of the testbench is also vital to the product's performance.
 The testbench should be free from errors within a reasonable operating range.
@@ -44,13 +45,20 @@ interface could make the tests much more visual and interesting.
 The interface could also provide information on the failure in the DUT.
 A better testbench would provide more insightful details when the DUT fails.
 This would make debugging or evaluating the design much simpler.
+Along with the GUI, this project has many optional extensions that would be
+discussed further in the corresponding section.
+After the main goal of the project being met, the number of optional functions
+implemented would become a good measure of the progress of the project.
 
-\subsection{Fallbacks}
+Since the project is of the verification system, the results from the benchmarks
+should not be used for evaluation of this project.
+
+\subsection{Risks and Fallbacks}
 A major risk of this project is related to its schedule and the existence of an
 initial blocking task.
 While most of the later sections of the project can be selectively added or
 removed from the scope relatively easily, the initial setup of the testbench
-will always remain critical to any further improvements.
+structure will always remain critical to any further improvements.
 It is thus vital that the bare minimum system gets done early.
 To ensure this happens, it will be placed in the highest priority before its
 completion, and any blocking issue should be discussed with the supervisor if it
@@ -62,7 +70,7 @@ If these designs would not be available near the end of this project,
 it would be difficult to empirically prove the capabilities of the testbench
 and its surrounding system.
 It is not impossible, as there are still substitutions for them.
-For functional purposes, standard off-the-shelf adders and multipliers could be
+For functional purposes, standard off-the-shelf arithmetic modules could be
 used in-lieu.
 For other purposes, it is possible to have a model done before the actual design
 starts in the paired project.
