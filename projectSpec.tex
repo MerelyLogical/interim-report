@@ -54,18 +54,25 @@ The 5CSXFC6D6F31C6N SoC has an Arm Cortex-A9 MPCore accompanied by Intel's 28nm
 FPGA fabric~\cite{Altera1}.
 The FPGA is necessary for implementing the hardware design and obtaining
 empirical results for the project.
-% REVISIT: is this true? why do we need an HPS?
 % maybe hybrid architecture soc makes programming it harder and it could
 % be used as a negative point
-Having an HPS on the same chip is useful as the test software can run on it,
-allowing a better user interface to be constructed with more detailed,
-on-the-fly control to the FPGA.
 
-It should be noted that Xilinx offers similar boards as well. Its Zynq SoC
-family has a very comparable structure as they too integrate the software
-programmability of an Arm processor with the hardware possibility of an FPGA.
+While a plain FPGA chip would be enough for this project to work,
+having an HPS on the same chip is useful as the test software can run on it.
+While allows a better user interface to be constructed with more detailed,
+on-the-fly control to the FPGA.
+This means to setup the testbench would only require programming in the FPGA
+with the design, and running the test script on the HPS.
+The product would be self-contained.
+It would be more accessible as no additional setup is required for the user.
+
+It should be noted that Xilinx offers similar boards as well.
+Its Zynq SoC family has a very comparable structure as they too integrate the
+software programmability of an Arm processor with the hardware possibility of
+an FPGA.
 For example, like the Cyclone V SX, Zynq-7000S also features an Arm Cortex-A9
 coupled with a Xilinx 28nm FPGA~\cite{Xilinx1}.
+As such, a board like the ZedBoard~\cite{Xilinx2} could be just as viable.
 
 % REVISIT: need to show evidence for the boards' similarity?
 As there are very few significant functional differences between the two brands,

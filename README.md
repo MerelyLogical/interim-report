@@ -9,7 +9,7 @@
 ## Notes:
 - free license has limitations, slower, less fpga support etc.
 - imperial has academic license
-- the Zed board -> similar capabilities
+- ~the Zed board -> similar capabilities~
 - another board with better power management
 - with HPS, self-contained. more accessible later on. less setup. 
   complete product.
