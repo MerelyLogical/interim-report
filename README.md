@@ -2,6 +2,7 @@
 
 ## TODO:
 - `git grep REVISIT`
+- [] Contact Kan Shi for his testbench
 - [] Work done to date
 - [] Structure shift, break up Chapter II, highlight TB comparison early
 
