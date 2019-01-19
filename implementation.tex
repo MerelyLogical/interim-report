@@ -86,17 +86,86 @@ necessary to carry out the project.
 This involved building a small testing system on the board.
 Details regarding this testing system can be found in the Work to Date section.
 
+% REVISIT: split TB structure to a few more tasks as it would be the longest?
 \textit{\textbf{Testbench Structure}} --
+Once comfortable with the tools, The main design of the testbench can start.
+This task would be the foundation of this project, as it would provide a basis
+for all following features.
+A skeletal testbench should be complete and functional at the end of this
+task.
+This means the an operator module matching the correct specifications can
+be loaded into the testbench, and compute some non-trivial tests.
 
 \textit{\textbf{Variable Frequency}} --
+As the project seeks to quantify the performance across a range of frequencies,
+the most important feature of the system would be the ability to vary this
+parameter.
+This would be done by controlling the PLLs with the HPS~\cite{Altera4}.
+Once implemented, some kind of test will be run to test and confirm the maximum
+frequency the testbench would remain reliable.
+If it does not meet the planned target, the testbench may need to be redesigned,
+and this project would be under some risk.
+
+While most of the later sections of the project can be selectively added or
+removed from the scope relatively easily, this initial setup of the testbench
+structure will always remain critical to any further improvements.
+It is thus vital that the bare minimum system gets done early.
+To ensure this happens, this task and the testbench structure will be placed in
+the highest priority before its completion, and any blocking issue should be
+discussed with the supervisor if it could not be resolved after reasonable
+effort.
 
 \textit{\textbf{Benchmarks}} --
+With a promising base, more intricate tests and benchmarks can be designed.
+These would aim to reflect the system's performance running meaningful compute
+tasks.
+The systems enveloping the arithmetic modules could be optimised for popular
+algorithms to evaluate real-life obtainable speed up.
+In addition to better tests, this task also aims to obtain better data from
+these tests.
+The minimum result required here would be numerical information on power
+consumption, FPGA resources required, and the data throughput.
 
-\textit{\textbf{Configurable Radix}} --
+The last three tasks forms the core of this project.
+In other words, all three tasks must be completed for a minimum functional
+product.
+The following tasks would be mostly considered as useful extensions.
+While not as vital as the core tasks, the following tasks greatly improves the
+quality of life and usability, and are thus equality critical to the success
+of the final product.
+
+\textit{\textbf{Configurable Modules}} --
+So far, only modules of a specific I/O width and numerical representation
+could be tested.
+It might be interesting to explore arithmetic modules with other configurations.
+To allow the testbench be used for further experiments or future projects,
+it is helpful to have a configurable testbench.
+Qsys components can be configured with the Hardware Component Definition
+File~\cite{Altera5}.
+The plan is to build the testbench as a Qsys components, then use Qsys as an
+interface for configuration.
 
 \textit{\textbf{Handling Failures}} --
+Another improvement to the testbench is related to how it handles failures
+in the module.
+It would be much more insightful for the user, if a more insightful failure
+message is provided in addition to just a simple failure rate.
+This could include examples of failed output against expected output,
+or statistical data describing the pattern of failures.
+This additional logic during run-time may degrade performance of the testbench,
+so it would be useful for the verbosity of this information to be configurable
+by the user.
 
 \textit{\textbf{Interactive UI}} --
+If time allows for even greater user experience enhancements, an real-time
+interactive graphical user interface could be constructed for the final
+demonstration.
+This would visualise the reduction of the module's precision as the user
+increases the clock rate.
+However, this would take significant time and effort, and this task will
+be re-evaluated when the project progresses to the stage.
+An time-saving yet functional alternative would be a command-line interface
+with a well documented user guide.
 
 \textit{\textbf{Reports and Presentation}} --
 The reports and the presentation are the most visible in all deliverables of
