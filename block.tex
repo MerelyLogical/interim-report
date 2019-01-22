@@ -1,0 +1,20 @@
+\begin{tikzpicture}
+    \tikzset{block/.style= {draw,
+                            rectangle,
+                            minimum width=2cm,
+                            minimum height=1cm},
+            }
+    \path
+    (0,0) node[block](r) {Randomiser}
+    (3,0) node[block](d) {Driver}
+    (5,1) node[draw, rectangle, minimum width=0.5cm, minimum height=3cm](i) {\rotatebox{270}{Interface}}
+    (6.5,1) node[draw, rectangle, minimum width=1.5cm, minimum height=1.5cm](t) {DUT}
+    (0,2) node[block](s) {Scoreboard}
+    (3,2) node[block](m) {Monitor}
+    ;
+    \draw[->] (r) -- (d);
+    \draw[->] (d) -- (i);
+    \draw[->] (i) -- (t);
+    \draw[->] (i) -- (m);
+    \draw[->] (m) -- (s);
+\end{tikzpicture}

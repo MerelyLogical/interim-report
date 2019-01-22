@@ -73,9 +73,41 @@ memory could only reach a few MB~\cite{Altera2}.
 Volatility is not exactly of concern in this project, but its small capacity
 means not much test data can be held before it needs more fed in.
 
-Looking at the options listed above, with a way of generating test data at
-run-time on the FPGA, using on-chip memory would be the most sensible option.
+% Looking at the options listed above, with a way of generating test data at
+% run-time on the FPGA, using on-chip memory would be the most sensible option.
 % REVISIT: Explain how test data could be generated at run-time
+
+\subsection{Run-time Test Data Generation}
+To exploit the benefits of using on-chip memory, a way of generating test data
+at run-time needs to be designed.
+As arithmetic operators have a vast set of valid inputs, it is necessary to
+have cost effective test generation.
+
+A good choice here is the use of random testing.
+With relatively minimum effort, random testing can provide significant coverage
+and discover relatively subtle errors~\cite{Duran1}.
+% random test should be accompanied by specific tests
+The main drawback of random testing is the possible lack of coverage on extreme
+cases, and the usual solution is to provide handwritten tests to complement
+random testing.
+However, as the main goal of this testbench is mainly gauging the performance of
+the module and not necessarily verifying the correctness of the arithmetic
+module, this could be ignored during stress testing.
+If logic correctness testing is later required, these special tests could be
+written and run separately at a slower speed.
+
+LFSRs are a reliable way of generating pseudo random numbers fast with minimum
+cost~\cite{Hazwani1}.
+They will thus form the starting point of data generation.
+While this should not be the case for most benchmarks, if some of the data is
+invalid, they will be dealt with at the monitor.
+
+\begin{figure}[H]
+  \centering
+  \input{block}
+  \caption{Testbench block diagram}
+  \label{Block}
+\end{figure}
 
 \subsection{Clock Domains}
 Another concern in the system design is of the different clock domains that

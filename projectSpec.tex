@@ -23,11 +23,13 @@ functionalities and robustness.
 This relationship and its effect on the evaluation will be examined further in
 the evaluation chapter of this report.
 
-\subsection{Project Interfacing}
-% REVISIT: necessary? if already decided, what is it?
-A number representation system should be decided before detailed design starts.
+To ensure the two product will work together once they are both complete, a
+common interface needs to be agreed upon.
+This falls off directly from the use of the hardware and as such it will be
+explained in the corresponding section.
 
-The modules would be compiled hardware in 
+% \subsection{Project Interfacing}
+% REVISIT: project interfacing section necessary?
 
 \subsection{Deliverables}
 At the end of the project, the system should be able to perform the following:
@@ -43,19 +45,19 @@ At the end of the project, the system should be able to perform the following:
 The system itself will be built on a Cyclone V SX SoC Development Board from
 Intel~\cite{Intel1}.
 
-\begin{figure}[H]
-  \centering
-  \includegraphics[width=8cm]{img/SoCStructure}
-  \caption{Structure of the System-on-Chip}
-  \label{SoCStructure}
-\end{figure}
-
 The 5CSXFC6D6F31C6N SoC has an Arm Cortex-A9 MPCore accompanied by Intel's 28nm
 FPGA fabric~\cite{Altera1}.
 The FPGA is necessary for implementing the hardware design and obtaining
 empirical results for the project.
 % maybe hybrid architecture soc makes programming it harder and it could
 % be used as a negative point
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=8cm]{img/SoCStructure}
+  \caption{Structure of the System-on-Chip}
+  \label{SoCStructure}
+\end{figure}
 
 While a plain FPGA chip would be enough for this project to work,
 having an HPS on the same chip is useful as the test software can run on it.
