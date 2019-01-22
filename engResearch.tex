@@ -1,16 +1,8 @@
 \section{Engineering Background}
-% REVISIT: Write more stuff for engineering background
-% research on possible architectures
-% hardware of FPGA
-% speed of memory
-% launch registers
-% PLLs
-% HLS vs Verilog?
-% LFSR
 
 \subsection{Testbench Architecture}
 
-% REVISIT: find more testbench architectures
+% REVISIT: find more testbench architectures to compare with
 While there has been many similar performance analysis done on hybrid SoCs
 before, each of them uses their own, usually ad hoc, testbench
 design~\cite{Shi1}.
@@ -89,10 +81,6 @@ memory could only reach a few MB~\cite{Altera2}.
 Volatility is not exactly of concern in this project, but its small capacity
 means not much test data can be held before it needs more fed in.
 
-% Looking at the options listed above, with a way of generating test data at
-% run-time on the FPGA, using on-chip memory would be the most sensible option.
-% REVISIT: Explain how test data could be generated at run-time
-
 \subsection{Run-time Test Data Generation}
 To exploit the benefits of using on-chip memory, a way of generating test data
 at run-time needs to be designed.
@@ -102,7 +90,6 @@ have cost effective test generation.
 A good choice here is the use of random testing.
 With relatively minimum effort, random testing can provide significant coverage
 and discover relatively subtle errors~\cite{Duran1}.
-% random test should be accompanied by specific tests
 The main drawback of random testing is the possible lack of coverage on extreme
 cases, and the usual solution is to provide handwritten tests to complement
 random testing.
