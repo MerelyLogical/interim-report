@@ -8,15 +8,16 @@ This project is a part of a larger project investigating the effect of using
 high radix number systems with on-line arithmetic operators.
 The overarching aim would involve implementing such a system on FPGA and
 quantifying its performance improvements.
-This aim would be achieved through two vertically split individual projects.
+This would be achieved through two individual projects, vertically split from
+the enveloping project.
 One would design and verify the arithmetic operator modules,
 while the other would design a system from the top-level to test and
 evaluate these operators.
 This project deals with the system-level issues.
 
 As this project progresses in parallel with the designing of the operator
-modules, it is necessary to decouple the two project so that as individual
-projects, they are individually evaluated.
+modules, it is necessary to decouple the two project so that being individual
+projects, they can be evaluated individually.
 The success of one project should not be restricted by the status of the other.
 To this end, the goal of the system-level design is more focussed on its
 functionalities and robustness.
@@ -25,8 +26,9 @@ the evaluation chapter of this report.
 
 To ensure the two product will work together once they are both complete, a
 common interface needs to be agreed upon.
-This falls off directly from the use of the hardware and as such it will be
-explained in the corresponding section.
+The interface will be done using Qsys.
+Its reasoning falls off directly from the use of the hardware,
+as such it will be explained in the corresponding section.
 
 % \subsection{Project Interfacing}
 % REVISIT: project interfacing section necessary?
@@ -34,7 +36,7 @@ explained in the corresponding section.
 \subsection{Deliverables}
 At the end of the project, the system should be able to perform the following:
 \begin{enumerate}
-  \item Takes in the arithmetic modules designed by the sister project as its
+  \item Connects to the arithmetic modules designed by the sister project as its
         input;
   \item Generate and run tests on these modules;
   \item Vary the frequency and voltage of the FPGA;
@@ -61,20 +63,21 @@ empirical results for the project.
 
 While a plain FPGA chip would be enough for this project to work,
 having an HPS on the same chip is useful as the test software can run on it.
-While allows a better user interface to be constructed with more detailed,
+A better user interface can also be constructed with more detailed,
 on-the-fly control to the FPGA.
-This means to setup the testbench would only require programming in the FPGA
-with the design, and running the test script on the HPS.
-The product would be self-contained.
+This means setting up the testbench would only require programming the design
+into the FPGA, followed by running the test script on the HPS.
+The product would thus be self-contained.
 It would be more accessible as no additional setup is required for the user.
 
 It should be noted that Xilinx offers similar boards as well.
 Its Zynq SoC family has a very comparable structure as they too integrate the
 software programmability of an Arm processor with the hardware possibility of
 an FPGA.
-For example, like the Cyclone V SX, Zynq-7000S also features an Arm Cortex-A9
+For example, similar to the Cyclone V SX, Zynq-7000S features an Arm Cortex-A9
 coupled with a Xilinx 28nm FPGA~\cite{Xilinx1}.
-As such, a board like the ZedBoard~\cite{Xilinx2} could be just as viable.
+As such, a board like the ZedBoard~\cite{Xilinx2} could be just as viable for
+this project.
 
 As there are very few significant functional differences between the two brands,
 this project will initially explore with the Intel board, simply for its
@@ -85,23 +88,26 @@ tested, the Xilinx alternative could be explored as an extension.
 
 \subsection{Software Choice}
 The software choice follows closely with the hardware choice in this project.
-To develop for Intel FPGA, Quartus needs to be used.
-The version picked is arbitrary as there is not much functional difference
+To develop for Intel FPGA, Quartus has to be used.
+The version picked is arbitrary as there are not much functional differences
 between the versions that would be critical to the project.
 As Quartus Prime 16.0 is the version installed in the computers in the
-department.
-The project will be using the same version for the convenience.
+department, the project will use the same version for convenience.
 This naturally means the hardware system will be build with the system
 integration tool that comes with Quartus -- Qsys.
 
-While an HLS could be used for the design, this project requires detailed
-control of the actual hardware implementation.
+By design, Qsys is a software used to integrated different hardware modules
+into a system.
+As such, it will be used as the interface for the two parallel projects.
+
+While an HLS language could be used for the design, this project requires
+detailed control of the actual hardware implementation only offered by HDLs.
 As such, the design will be written in Verilog.
 
 Other than the hardware design tools, there are some freedom of choice in the
 HPS side of the project.
 The test will be build with Python, which will be running on an Ubuntu system
 that is installed in the HPS.
-This choice is made for there are previous unrelated projects on the same
-develop board that uses the same configuration, which means a lot of time
-could be saved on getting an operating system booting.
+This choice is made as there are previous unrelated projects on the same
+develop board, which means a lot of time could be saved on tedious set up works
+such as getting an operating system booting.

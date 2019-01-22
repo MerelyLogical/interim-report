@@ -18,44 +18,34 @@
 % REVISIT: so no point over clocking an adder?
 
 \subsection{On-line Arithmetic}
-Traditional designs to achieve a faster and more efficient arithmetic
-operator have two common characteristics.
-One, their order operation may be different depending on the operation itself.
+Traditional arithmetic operators have two common characteristics.
+One, their order of operation may be different depending on the operation
+itself.
 A traditional adder, parallel or serial, generates its answers from the LSD to
 the MSD.
-A traditional divider design on the other hand, generates its answers from
+A traditional divider design on the other hand, generates its answer from
 the MSD to the LSD~\cite{Brent1}\cite{Srinivas1}.
 
 Due to this inconsistency, arithmetic operators may be forced to compute
-word-by-word, waiting for all digits to finish in the previous operator before
-moving on to the next.~\cite{Zhao1}
-This means if a divider follows an adder of the same width, the divider has to
-wait until the adder complete its computation before it can start its own.
+word-by-word, waiting for all digits to finish in the previous operator the next
+can start~\cite{Zhao1}.
+Therefore, if a divider follows an adder of the same width, the divider has to
+wait until the adder has completed its computation before it can begin its own.
 
 The other commonality of traditional designs is that their precisions are
 specified design-time. Once built, a 32-bit adder always adds 32 bits together,
 as the hardware is fixed at run-time.
-A possible way of making it more efficient would be using SIMD
-instructions~\cite{Duncan1}, trying to combine smaller operations into a larger
+A possible way of making it less inefficient would be using SIMD
+instructions~\cite{Duncan1}, combining smaller operations into a larger
 one that fits the hardware.
-This requires more control circuits in the hardware, or a more complex compiler.
+This however, has the trade-off of more control circuits in the hardware, or
+a more complex compiler.
 
 On-line arithmetic does not suffer from the first issue as it performs all
-arithmetic operations with MSD first~\cite{Ercegovac1}~\cite{Ercegovac2}.
-Pipelining can be used with on-line serial arithmetic operators.
-This means the output digit of an earlier operation can be fed into the next
+arithmetic operations MSD-first~\cite{Ercegovac1}~\cite{Ercegovac2}.
+Furthermore, pipelining can be used with on-line serial arithmetic operators.
+Thus the output digit of an earlier operation can be fed into the next
 operator before the earlier operation been fully complete.
-
-As illustrated in figure~\ref{Online}, while each individual operation may
-take longer than its conventional counterpart, on-line arithmetic could provide
-a speed up if the operators are in serial.
-Individually, on-line arithmetic also sacrifices in terms of memory.
-As all computation are made MSD to LSD, the use of a redundant number system
-is compulsory.
-However, this redundancy also has its advantage in making the operators
-scalable.
-The time required per digit can be made independent of the length of the
-operands.~\cite{Trivedi1}
 
 \begin{figure}[H]
   \centering
@@ -65,16 +55,28 @@ operands.~\cite{Trivedi1}
   \label{Online}
 \end{figure}
 
-A recent architecture proposal allows the precision of
+As illustrated in figure~\ref{Online}, while each individual operation may
+take longer than its conventional counterpart, on-line arithmetic could provide
+a speed up if the operators are chained in serial.
+In addition to the temporal trade-off, individual on-line arithmetic operators
+also sacrifices in the use of memory space.
+To perform all computation are made from the MSD to the LSD, the use of a
+redundant number system is compulsory.
+However, this redundancy also has its advantage in making the operators
+scalable.
+The time required per digit can be made independent of the length of the
+operands.~\cite{Trivedi1}
+
+A recently proposed architecture allows the precision of
 on-line arithmetic to be controlled at run-time~\cite{Zhao1}.
 Traditionally, this run-time control was restricted due to the parallel adders
 present in the multipliers and dividers.
 This architecture reuses a fixed-precision adder and stores residues in
 on-chip RAM.
-As such, a single piece of hardware can be used to calculate to any precision
+As such, a single piece of hardware can be used to calculate to any precision,
 limited only by the size of the on-chip RAM.
 
-The way on-line arithmetic alleviates the problem of fixed precision
+The way on-line arithmetic alleviates the second problem of fixed precision
 falls out directly from its MSD-first nature.
 Suppose the output of a conventional ripple adder is sampled before
 it has completed its operation.
@@ -94,11 +96,11 @@ frequency~\cite{Shi2}.
 \subsection{High radix Arithmetic}
 Conventional designs of arithmetic operators use binary representations.
 This was chosen four decades ago to maximise numerical accuracy per bit of data.
-However, using a high radix representation system could yield better numerical
-accuracy while reducing area cost of FPGAs.
-For example, a hexadecimal floating-point adder has a 30\% smaller area-time
-product than its binary counterpart, while still delivering equal worst-case
-and better average-case numerical accuracy~\cite{Catanzaro1}.
+However, using a high radix representation system could still yield better
+numerical accuracy while reducing area cost for FPGAs.
+For example, a hexadecimal floating-point adder was shown to have a 30\% smaller
+area-time product than its binary counterpart, while still delivering equal
+worst-case and better average-case numerical accuracy~\cite{Catanzaro1}.
 
 However, the savings are not without trade-offs.
 This trade-off can become unfavourable if the specification requires much I/O
@@ -112,12 +114,13 @@ negligible~\cite{Catanzaro1}.
 Using high radix number representations for on-line arithmetic is a
 relatively novel concept.
 % REVISIT: can find problem with Lynch? his high radix looks weird
-While there have been some research in this field~\cite{Lynch1}\cite{Lynch2},
+While there have been some research with similar
+premises~\cite{Lynch1}\cite{Lynch2},
 this project takes a more direct approach by implementing custom operators
-made for high radix on-line arithmetic on a FPGA.
-This would allow for empirical results to be obtained, hopefully revealing
-practical insights to the method.
+made for high radix on-line arithmetic on an FPGA.
+This would allow for empirical results to be obtained, and hopefully revealing
+practical insights to the method while doing so.
 
-As an potential extension to the project, optimising this exotic arithmetic
-on a system level for popular FPGA accelerations such as neural networks would
-be innovative as well.
+Furthermore, benchmarking this exotic arithmetic system for popular FPGA
+accelerations such as neural networks would be interesting, as there is not
+much precedence for it.
