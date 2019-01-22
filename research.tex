@@ -46,14 +46,6 @@ Pipelining can be used with on-line serial arithmetic operators.
 This means the output digit of an earlier operation can be fed into the next
 operator before the earlier operation been fully complete.
 
-\begin{figure}[H]
-  \centering
-  \input{online}
-  \caption{Computing $y=\sqrt{(a+b)cd/(e-f)}$ with serial on-line
-           operators~\cite{Ercegovac1}}
-  \label{Online}
-\end{figure}
-
 As illustrated in figure~\ref{Online}, while each individual operation may
 take longer than its conventional counterpart, on-line arithmetic could provide
 a speed up if the operators are in serial.
@@ -64,6 +56,14 @@ However, this redundancy also has its advantage in making the operators
 scalable.
 The time required per digit can be made independent of the length of the
 operands.~\cite{Trivedi1}
+
+\begin{figure}[H]
+  \centering
+  \input{online}
+  \caption{Computing $y=\sqrt{(a+b)cd/(e-f)}$ with serial on-line
+           operators~\cite{Ercegovac1}}
+  \label{Online}
+\end{figure}
 
 A recent architecture proposal allows the precision of
 on-line arithmetic to be controlled at run-time~\cite{Zhao1}.

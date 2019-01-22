@@ -49,7 +49,7 @@ In order to track the progress and success of the project, the difficulties
 of the deliverables need to be analysed first.
 Figure \ref{Timeline} provides a visualisation of the project timeline.
 
-\textit{\textbf{Term Time and Examinations}} --
+\subsubsection{\textbf{Term Time and Examinations}}
 Time available for the project varies greatly throughout the year.
 The greatest factors would be the term time and the examinations.
 The time needed for revision has been marked in the chart.
@@ -67,7 +67,7 @@ The list of tasks were then laid out onto the timeline.
 This is done according to its expected difficulty and the expected availability
 to work on these tasks.
 
-\textit{\textbf{Background Research}} --
+\subsubsection{\textbf{Background Research}}
 To fill in the background knowledge required to work on this project, the first
 months were spent on reading textbooks and papers.
 The research is to provide context and motivation to the project.
@@ -78,7 +78,7 @@ project to be successful.
 % REVISIT: comeback to this after re-structure of Chapter 3
 % Chapter 2 of this report gives a summary of this research
 
-\textit{\textbf{Learning the Tools}} --
+\subsubsection{\textbf{Learning the Tools}}
 Due to the lack of experience in programming in a hybrid SoC and the lack of
 knowledge in the current state-of-art digital arithmetic designs, a significant
 portion of the effort was spend on researching and learning the skills
@@ -87,7 +87,7 @@ This involved building a small testing system on the board.
 Details regarding this testing system can be found in the Work to Date section.
 
 % REVISIT: split TB structure to a few more tasks as it would be the longest?
-\textit{\textbf{Testbench Structure}} --
+\subsubsection{\textbf{Testbench Structure}}
 Once comfortable with the tools, The main design of the testbench can start.
 This task would be the foundation of this project, as it would provide a basis
 for all following features.
@@ -96,7 +96,7 @@ task.
 This means the an operator module matching the correct specifications can
 be loaded into the testbench, and compute some non-trivial tests.
 
-\textit{\textbf{Variable Frequency}} --
+\subsubsection{\textbf{Variable Frequency}}
 As the project seeks to quantify the performance across a range of frequencies,
 the most important feature of the system would be the ability to vary this
 parameter.
@@ -115,7 +115,7 @@ the highest priority before its completion, and any blocking issue should be
 discussed with the supervisor if it could not be resolved after reasonable
 effort.
 
-\textit{\textbf{Benchmarks}} --
+\subsubsection{\textbf{Benchmarks}}
 With a promising base, more intricate tests and benchmarks can be designed.
 These would aim to reflect the system's performance running meaningful compute
 tasks.
@@ -134,7 +134,7 @@ While not as vital as the core tasks, the following tasks greatly improves the
 quality of life and usability, and are thus equality critical to the success
 of the final product.
 
-\textit{\textbf{Configurable Modules}} --
+\subsubsection{\textbf{Configurable Modules}}
 So far, only modules of a specific I/O width and numerical representation
 could be tested.
 It might be interesting to explore arithmetic modules with other configurations.
@@ -145,7 +145,7 @@ File~\cite{Altera5}.
 The plan is to build the testbench as a Qsys components, then use Qsys as an
 interface for configuration.
 
-\textit{\textbf{Handling Failures}} --
+\subsubsection{\textbf{Handling Failures}}
 Another improvement to the testbench is related to how it handles failures
 in the module.
 It would be much more insightful for the user, if a more insightful failure
@@ -156,7 +156,7 @@ This additional logic during run-time may degrade performance of the testbench,
 so it would be useful for the verbosity of this information to be configurable
 by the user.
 
-\textit{\textbf{Interactive UI}} --
+\subsubsection{\textbf{Interactive UI}}
 If time allows for even greater user experience enhancements, an real-time
 interactive graphical user interface could be constructed for the final
 demonstration.
@@ -167,7 +167,7 @@ be re-evaluated when the project progresses to the stage.
 An time-saving yet functional alternative would be a command-line interface
 with a well documented user guide.
 
-\textit{\textbf{Reports and Presentation}} --
+\subsubsection{\textbf{Reports and Presentation}}
 The reports and the presentation are the most visible in all deliverables of
 this entire process.
 As such, while not directly contributing to the progress of the project,
@@ -183,4 +183,83 @@ This would involve preparing a slide deck, a demo, and a script.
 \subsection{Work to Date}
 % REVISIT: include the use of git somewhere
 
-% mostly ad hoc TB, lack of standards for comparison.
+% REVISIT: add how mostly ad hoc TB, lack of standards for comparison.
+Before any engineering work is done towards the final product, a small module
+was build to learn the environment.
+This module should be simple yet covers enough grounds to provide as much
+learning during process as possible without taking up too much actual
+development time towards the product.
+As the greatest unfamiliarity is with the interaction across the HPS-FPGA
+bridge, a simple hardware accelerated adder was used for this training.
+
+\subsubsection{\textbf{FPGA Side}}
+Programming the FPGA to communicate with the HPS is no trivial task.
+Luckily, there exist a golden system reference design~\cite{Rocket1} for
+the board in use for this project.
+Unfortunately, support for certain versions of Quartus are missing from
+the GSRD download database, including the one used for this project, 16.0.
+While the design could be opened with a different version of the software,
+it would cause a series of conflicts usually related to using IP Cores that
+have changed over the iterations.
+To circumvent this issue cleanly, GSRD version 14.1 was downloaded and compiled
+on a separate install of Quartus II 14.1.
+This allowed the reference design to be studied in detail, and the sections
+required for this project to be rebuilt with Quartus Prime 16.0.
+
+% REVISIT: Insert design diagram
+
+From the perspective of the FPGA, The HPS exposes a three bridges for
+connections~\cite{Altera6}.
+As this is a relatively simple task, the lightweight bridge is used.
+Module \texttt{altera\_hps} exposes the master of this bridge as
+\texttt{h2f\_lw\_axi\_master}.
+Next, the actual hardware adder needs to be built and integrated as a hardware
+module in Qsys with a matching interface.
+A simple adder can produce the result after one clock cycle.
+This greatly simplifies the logic required for the Avalon slave interface.
+The logic for the control and data signals are then written according to the
+interface specifications~\cite{Intel3}.
+Following the naming conventions for the signals allows Qsys Component Editor
+to automatically detect the Avalon slave from this module at analysis.
+This saves the troubles of editing the \texttt{\_hw.tcl} file.
+To experiment with module configuration, the adder is designed with variable
+width.
+
+The adder is then instantiated and connected to the rest of the system with
+two clicks in Qsys.
+From there, Qsys can generate the HDL for the entire system, which is then
+compiled to a bitstream file.
+With the bitstream ready, the work now shifts to the HPS.
+
+\subsubsection{\textbf{HPS Side}}
+The HPS runs Ubuntu and a bash script has been written to load the bitstream
+onto the FPGA.
+Next, A program is written in Python to test the hardware design from the HPS.
+The interfaces are mapped onto the physical memory, thus they can be accessed
+by opening \texttt{/dev/mem}.
+Checking against the specifications~\cite{Altera6}, the lightweight master is
+at \texttt{0xFF20\_0000}.
+Qsys allocates the memory spaces of modules relatively, so when it reports
+that the adder has been placed at \texttt{0x0010\_0000}, it is physically at
+\texttt{0xFF30\_0000}.
+The adder is then designed to have its two inputs at \texttt{0x00} and
+\texttt{0x10} and its output at \texttt{0x20}, which has been assigned by Qsys
+relatively to \texttt{0xFF30\_0000}.
+
+With the memory mapping understood, the script can be designed to closely
+mirror this relative relationship between the modules using classes.
+For example, this allows the adder to still define its output at \texttt{0x20}
+in the adder class, and then initialised with an axi module bringing it to the
+correct physical address.
+This parallel between software and hardware should be helpful as the product
+gets more complex.
+
+For testing, 1000 add operations are executed separately with and without the
+hardware acceleration of the FPGA.
+While called hardware acceleration, it is not expected for the FPGA to have
+a higher performance than the HPS in this testing case.
+The CPU is reasonably efficient in calculating additions, while to calculate
+on the FPGA has a large overhead cost as the data transfers across the bridge
+back and forth.
+
+% REVISIT: add test data here
