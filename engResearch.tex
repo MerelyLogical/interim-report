@@ -8,6 +8,22 @@
 % HLS vs Verilog?
 % LFSR
 
+\subsection{Testbench Architecture}
+
+% REVISIT: find more testbench architectures
+While there has been many similar performance analysis done on hybrid SoCs
+before, each of them uses their own, usually ad hoc, testbench
+design~\cite{Shi1}.
+This project will use a generic structure that is inspired by the structure of
+an agent in UVM~\cite{Accellera1}.
+
+\begin{figure}[H]
+  \centering
+  \input{block}
+  \caption{Proposed testbench block diagram}
+  \label{Block}
+\end{figure}
+
 \subsection{Target}
 The design of the verification system is the major engineering challenge of this
 project.
@@ -99,27 +115,36 @@ written and run separately at a slower speed.
 LFSRs are a reliable way of generating pseudo random numbers fast with minimum
 cost~\cite{Hazwani1}.
 They will thus form the starting point of data generation.
-While this should not be the case for most benchmarks, if some of the data is
-invalid, they will be dealt with at the monitor.
+While this should not be the case for most benchmarks in this project, if some
+of the data is invalid, they can be dealt with at the monitor.
 
-\begin{figure}[H]
-  \centering
-  \input{block}
-  \caption{Testbench block diagram}
-  \label{Block}
-\end{figure}
+With this, the software would only need to configure the randomiser, and is
+no longer required to produce testing data itself.
 
 \subsection{Clock Domains}
 Another concern in the system design is of the different clock domains that
 must exist on the FPGA.
 At a minimum, there needs to be two clock domains, one surrounds the DUT and
 another supports the rest of the control logic around the DUT.
-
 These clock frequencies can be generated and distributed with PLLs provided as
 an IP in the Quartus software~\cite{Altera4}.
+Data crossing clock domains will be fed across FIFOs to prevent loss.
 
-\subsection{Testbench Architecture}
+The proposed structure will have the driver and monitor modules running under
+the same clock domain as the DUT, but the randomiser and the scoreboard does
+not have to.
+This means the rest of the system can be running at a slower frequency without
+bottlenecking the system, thus allowing the DUT to be stressed further.
 
-% REVISIT: tom clarke - research should compare to existing work
-Chapter 4 of Shi's paper~\cite{Shi1} provides the structure for its
-verification system.
+To run at a high frequency, the driver and the monitor are both simple modules.
+The driver converts the stream of random numbers into inputs for the DUT, and
+the monitor takes the output to check if they are correct.
+% REVISIT: explain how the monitor would keep up with the high frequency
+
+\subsection{Results Analysis}
+If the monitor detects an interesting event such as an error, it will sent out
+a message to the scoreboard.
+The scoreboard has counters tracking these events, and update them back to the
+software periodically.
+
+The software can run statistics to provide further insights to the user.
