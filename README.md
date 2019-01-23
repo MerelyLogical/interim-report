@@ -4,7 +4,7 @@
 - [ ] `git grep REVISIT`
 - [x] Contact Kan Shi for his testbench
 - [x] Work done to date
-- [ ] Structure shift, break up Chapter III, highlight TB comparison early
+- [x] Structure shift, break up Chapter III, highlight TB comparison early
 - [ ] Acronym check
 
 ## Notes:
