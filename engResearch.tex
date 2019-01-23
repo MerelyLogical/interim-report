@@ -40,14 +40,14 @@ estimated to be 25.6Gbps.
 
 \subsection{Data Transfer Rate}
 % REVISIT: possible to find exact bandwidth of the bridge?
-As the test is to be controlled on HPS, the HPS-FPGA bridge will be the
+As the test is to be controlled on the HPS, the HPS-FPGA bridge will be the
 immediate bottleneck if the test data is to flow from HPS to FPGA.
-While HPS is able to easily generate test data with a piece of software,
+While the HPS can easily generate test data with a piece of software,
 there is a large amount of overhead as data crosses from one architecture
 to another.
 This overhead exists in the form of both a decreased bandwidth and a increased
 delay.
-Thus, it would not be sensible for HPS to send out data during run-time.
+Thus, it would not be sensible for the HPS to send out data during run-time.
 
 \subsubsection{\textbf{Off-chip DDR SDRAM}}
 Another thought may be to first populate the off-chip DDR SDRAM on FPGA
