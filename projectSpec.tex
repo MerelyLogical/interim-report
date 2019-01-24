@@ -67,8 +67,7 @@ While an FPGA without an embedded CPU will be enough for this project to work,
 having an Hard Processor System (HPS) on the same chip is useful as the test
 software can run on it.
 The HPS is a separate piece of hardware that distinguishes itself from a soft
-processor, such as the Nios II, which is a processor programmed onto the FPGA
-itself.
+processor, such as the Nios II, a processor programmed onto the FPGA itself.
 With this additional capacity, a better user interface can thus be constructed
 with more detailed, on-the-fly control of the FPGA.
 This means setting up the testbench will only require programming the design
@@ -108,17 +107,17 @@ The Qsys software is designed to be used for integrating different hardware
 modules into a system.
 As such, it will be used as the interface for the two parallel projects.
 
-While an HLS language could be used for the design, in this design
-it suffers from a few problems and does not offer enough benefits to justify
-its use.
-Usually HLS is preferred for developing algorithms, because it is often easier
-to write them down in C first before converting them to RTL.
-However, this project has a lot of control path work and direct manipulation
-on the data bits.
-The interfaces also require detailed control of the actual hardware
-implementation only offered by HDLs.
-It is therefore not worth it to go through the conversion and as such, this
-design will be written in Verilog.
+While an HLS language could be used, in this design it suffers from a few
+problems and does not offer enough benefits to justify its use.
+Usually HLS is preferred for developing complex algorithms, because compilers
+can optimise them into RTL much better than humans.
+However, the resulting RTL would be unreadable, making directly controlling or
+debugging at the hardware level nearly impossible.
+The interfaces require detailed control of the actual hardware and the rest of
+the testbench has a lot of control path work and direct manipulation on the
+data bits.
+It is therefore not worth it to use HLS and as such, this design will be written
+in Verilog.
 
 Other than the hardware design tools, there is some freedom of choice on the
 HPS side of the project.

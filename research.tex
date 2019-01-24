@@ -19,33 +19,34 @@
 
 \subsection{Online Arithmetic}
 Traditional arithmetic operators have two common characteristics.
-One, their order of operation may be different depending on the operation
+Firstly, their order of operation may be different depending on the operation
 itself.
 A traditional adder, parallel or serial, generates its answers from the LSD to
 the MSD.
-A traditional divider design on the other hand, generates its answer from
+A traditional divider design, on the other hand, generates its answer from
 the MSD to the LSD~\cite{Brent1}\cite{Srinivas1}.
 
 Due to this inconsistency, arithmetic operators may be forced to compute
-word-by-word, waiting for all digits to finish in the previous operator the next
-can start~\cite{Zhao1}.
-Therefore, if a divider follows an adder of the same width, the divider has to
-wait until the adder has completed its computation before it can begin its own.
+word-by-word, waiting for all digits to finish in the previous operator before
+the next can start~\cite{Zhao1}.
+Therefore, if a divider follows an adder, the divider has to wait until the
+adder has completed its computation before it can begin its own.
 
 The other commonality of traditional designs is that their precisions are
-specified design-time. Once built, a 32-bit adder always adds 32 bits together,
-as the hardware is fixed at run-time.
+specified at design-time.
+Once built, a 32-bit adder always adds 32 bits together, adding 16-bit numbers
+usually involves masking the unused bits.
 A possible way of making it less inefficient would be using SIMD
 instructions~\cite{Duncan1}, combining smaller operations into a larger
 one that fits the hardware.
-This however, has the trade-off of more control circuits in the hardware, or
-a more complex compiler.
+This, however, has the tradeoff of being harder to program, and the applications
+must have sufficient parallelism to exploit.
 
 Online arithmetic does not suffer from the first issue as it performs all
-arithmetic operations MSD-first~\cite{Ercegovac1}~\cite{Ercegovac2}.
+arithmetic operations from MSD first~\cite{Ercegovac1}~\cite{Ercegovac2}.
 Furthermore, pipelining can be used with online serial arithmetic operators.
 Thus the output digit of an earlier operation can be fed into the next
-operator before the earlier operation been fully complete.
+operator before the earlier one completes its computation.
 
 \begin{figure}[H]
   \centering
@@ -56,20 +57,20 @@ operator before the earlier operation been fully complete.
 \end{figure}
 
 As illustrated in figure~\ref{Online}, while each individual operation may
-take longer than its conventional counterpart, online arithmetic could provide
-a speed up if the operators are chained in serial.
-In addition to the temporal trade-off, individual online arithmetic operators
-also sacrifices in the use of memory space.
-To perform all computation are made from the MSD to the LSD, the use of a
+take longer than its conventional counterpart, online arithmetic can provide
+a speedup if the operators are chained in serial.
+In addition to the tradeoff in time, individual online arithmetic operators
+also uses more memory.
+To perform all computation from the MSD to the LSD, the use of a
 redundant number system is compulsory.
 However, this redundancy also has its advantage in making the operators
 scalable.
 The time required per digit can be made independent of the length of the
-operands.~\cite{Trivedi1}
+operands~\cite{Trivedi1}.
 
 A recently proposed architecture allows the precision of
-online arithmetic to be controlled at run-time~\cite{Zhao1}.
-Traditionally, this run-time control was restricted due to the parallel adders
+online arithmetic to be controlled at runtime~\cite{Zhao1}.
+Traditionally, this runtime control was restricted due to the parallel adders
 present in the multipliers and dividers.
 This architecture reuses a fixed-precision adder and stores residues in
 on-chip RAM.
@@ -84,15 +85,15 @@ In this case, the lower digits would have been completed, but the carry would
 not have reached the higher ones.
 This means the error on the result would be significant, as the top bits
 were still undetermined~\cite{Shi1}.
-
 However, if the output of a parallel online adder is sampled before its
 completion, the lower bits would be the undetermined ones.
 This means the error of the operation would be small.
-With overclocking, online arithmetic would fail gracefully, losing its
+With overclocking, online arithmetic operators fail gracefully, losing their
 precision gradually from the lowest bits first.
-Thus, it allows for a run-time trade-off between precision and
+Thus, it allows for a runtime tradeoff between precision and
 frequency~\cite{Shi2}.
 
+% REVISIT JD: find better arguments for high radix on FPGA for these two paras
 \subsection{High-radix Arithmetic}
 Conventional designs of arithmetic operators use binary representations.
 This was chosen four decades ago to maximise numerical accuracy per bit of data.
@@ -124,3 +125,4 @@ practical insights to the method while doing so.
 Furthermore, benchmarking this exotic arithmetic system for popular FPGA
 accelerations such as neural networks would be interesting, as there is not
 much precedence for it.
+% REVISIT JD: find better arguments for high radix on FPGA for these two paras
