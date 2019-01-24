@@ -108,21 +108,21 @@ This trade-off can become unfavourable if the specification requires much I/O
 and little computation~\cite{Whyte1}.
 This is because the overhead of radix conversion would be significant.
 It is also unwise to use high-radix representations when the numbers are
-unusually small, thus making the savings offered by the high-radix
+unusually small, thus making the savings offered by the high-radices
 negligible~\cite{Catanzaro1}.
 
 \subsection{High-radix Online Arithmetic}
 Using high-radix number representations for online arithmetic is a
 relatively novel concept.
 % REVISIT: can find problem with Lynch? his high-radix looks weird
-While there have been some research with similar
+While there has been some research with similar
 premises~\cite{Lynch1}\cite{Lynch2},
-this project takes a more direct approach by implementing custom operators
-made for high-radix online arithmetic on an FPGA.
-This would allow for empirical results to be obtained, and hopefully revealing
-practical insights to the method while doing so.
+We take a more direct approach with this project by implementing custom
+operators made for high-radix online arithmetic on an FPGA.
+This will provide empirical results on the method, and will hopefully reveal
+practical insights along the way.
 
-Furthermore, benchmarking this exotic arithmetic system for popular FPGA
-accelerations such as neural networks would be interesting, as there is not
+Furthermore, benchmarking this exotic arithmetic system with popular FPGA
+applications such as neural networks would be interesting, as there is not
 much precedence for it.
 % REVISIT JD: find better arguments for high radix on FPGA for these two paras

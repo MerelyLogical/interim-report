@@ -5,7 +5,11 @@
 - [x] Contact Kan Shi for his testbench
 - [x] Work done to date
 - [x] Structure shift, break up Chapter III, highlight TB comparison early
-- [ ] Acronym check
+- [x] Acronym check
+- [ ] Explain buffer in interface in Clock domain section
+- [ ] Find motivation for high radix on FPGA
+- [ ] Consider buffering test to on-chip memory
+
 
 ## Notes:
 - ~free license has limitations, slower, less fpga support etc.~

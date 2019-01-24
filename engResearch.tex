@@ -3,145 +3,177 @@
 \subsection{Testbench Architecture}
 
 % REVISIT: find more testbench architectures to compare with
-While there has been many similar performance analysis done on hybrid SoCs
-before, each of them uses their own, usually ad hoc, testbench
+The design of the verification system is the major engineering challenge of this
+project.
+While there have been many similar performance analyses done on hybrid SoCs
+before, each of them used their own, usually ad hoc, testbench
 design~\cite{Shi1}.
-This project will use a structure that is inspired by that of an agent in
-UVM~\cite{Accellera1}.
+As such, most testbench are not designed to be scalable or portable, serving
+only what they are built for.
+In this project, I shall use a generic structure inspired by that of an agent
+in Universal Verification Methodology (UVM).
+
+Before UVM, integrated circuit designs were verified with methodologies
+developed independently by stimulator vendors such as Cadence, Mentor Graphics,
+and Synopsys.
+In an effort to unify for greater efficiency, the standards organisation of the
+Electronic Design Automation (EDA) industry, Accellera, established UVM with
+support from multiple vendors.
+It provided a common structure for verification, with class libraries that made
+building and running a testbench a significantly smoother experience.
+The agent is a container in UVM that emulates and verifies
+DUTs~\cite{Accellera1}.
+While this project is in no position to achieve what UVM has done, I do hope
+that this testbench would have an easily modifiable structure that will make
+the process of testing similar future designs slightly simpler.
 
 \begin{figure}[H]
   \centering
   \input{block}
-  \caption{Proposed testbench block diagram}
+  \caption{Block diagram of the proposed testbench}
   \label{Block}
 \end{figure}
 
-Configuration is first done from a software running on the HPS, which sends
+Configuration is first done from software running on the HPS, which sends
 the test specifications to the randomiser.
-The randomiser will provide a stream of random data, that would be converted
+The randomiser will provide a stream of random data that will be converted
 to meaningful test inputs by the driver.
 The test output will be watched by the monitor, reporting any interesting
 event to the scoreboard, which keeps track of them.
-The scoreboard feeds the information back to the software on-demand.
-The interface is used to decouple the control logic with the DUT, allowing
+The scoreboard feeds the information back to the software on demand.
+The interface is used to decouple the control logic from the DUT, allowing
 the frequency of the DUT to be finely controlled.
 
-\subsection{Target}
-The design of the verification system is the major engineering challenge of this
-project.
+\subsection{Data Transfer Rate}
 In order to stress the DUT, the verification system must perform at a much
 higher frequency than the expected frequency of the DUT.
 Assuming the DUT is to run at 300MHz, to fully explore the effect of
 overclocking, the testbench must be able to run at double the frequency or
 higher.
 This gives a target frequency of 800MHz.
-Assuming data width of 32-bits, the target data transfer rate is then 
+Assuming a data width of 32-bit, the target data transfer rate is then 
 estimated to be 25.6Gbps.
 
-\subsection{Data Transfer Rate}
 % REVISIT: possible to find exact bandwidth of the bridge?
-As the test is to be controlled on the HPS, the HPS-FPGA bridge will be the
+\subsubsection{\textbf{HPS-FPGA Bridge}}
+As the testing is to be controlled by the HPS, the HPS-FPGA bridge will be the
 immediate bottleneck if the test data is to flow from HPS to FPGA.
 While the HPS can easily generate test data with a piece of software,
 there is a large amount of overhead as data crosses from one architecture
 to another.
-This overhead exists in the form of both a decreased bandwidth and a increased
+This overhead exists in the form of both decreased bandwidth and increased
 delay.
-Thus, it would not be sensible for the HPS to send out data during runtime.
+Thus, it is not be sensible for the HPS to send out data during runtime.
 
 \subsubsection{\textbf{Off-chip DDR SDRAM}}
-Another thought may be to first populate the off-chip DDR SDRAM on FPGA
+Another thought may be to first populate the off-chip DDR SDRAM on the FPGA
 side, then feed that data to the DUT during test.
 This is already much faster than passing the data directly from HPS.
-The 1GB, 32-bits wide DDR3 on FPGA side is rated at 400MHz.
+The 1GB, 32-bit wide DDR3 on the FPGA side is rated at 400MHz.
 With double rate transfer, this gives a maximum transfer rate of 25.6Gbps.
 
-While using the off-chip RAM may theoretically achieve the targets,
+Although using the off-chip RAM may theoretically achieve the targets,
 it still has its disadvantages.
-First, the process of filling up the memory and then using them for the tests
-takes time.
-This means the test would be broken up into bursts with time in between for
+Firstly, the process of filling up the memory takes time.
+Thus, the testing would be broken up into bursts, with time in between for
 checking results and filling in new data.
-The complexity of the SDRAM interface also requires a SDRAM controller to be
+The complexity of the SDRAM interface also requires an SDRAM controller to be
 used to manage SDRAM refresh cycles, address multiplexing and interface timing.
-These all adds up to a significant access latency.
-While it could be overcame with burst accesses and piplined accesses,
+These all add up to significant access latency.
+While it could be overcome with burst and piplined accesses,
 it would further complicate the SDRAM controller.
-A controller is provided by Altera~\cite{Altera3}, but it consumes
-a non-negligible amount of the limited FPGA resources, while adding
+A controller is provided by Intel~\cite{Altera3}, but it would consume
+a non-negligible amount of the limited FPGA resources while adding
 unnecessary complexities to the design.
 Customising or building a new SDRAM controller to fit this project is possible,
 but needlessly time-consuming.
 
 \subsubsection{\textbf{On-chip Memory}}
-The on-chip memory is much faster and simpler to handle.
+The on-chip memory is much faster and simpler to use.
 In comparison, this memory is implemented on the FPGA itself, and thus needs
 no external connections for accesses.
-It has the highest possible throughput, with the lowest possible latency
-in an FPGA-based system.
+It has higher throughput and lower latency than the SDRAM.
 The memory transactions can also be piplined, giving one transaction per
 clock cycle.
 With an on-chip FIFO accessed in dual-port mode, the write operations at one
 end and the read operations at the other end can happen simultaneously.
-This effective doubling of the bandwidth is useful as tests are prepared
-and fed into the DUT, or when test results are collected and fed to the
-monitor.
+This feature is useful as tests are prepared and fed into the DUT, or when test
+results are collected and fed to the monitor.
 
 On-chip memory is not without its drawbacks.
-It is volatile and very limited in capacity.
-While the off-chip can have its storage reaching 1GB, that of the on-chip
-memory could only reach a few MB~\cite{Altera2}.
+It is volatile like SDRAM and very limited in capacity.
+SDRAMs can have store about 1GB, while on-chip memory could only hold a few
+MB~\cite{Altera2}.
 Volatility is not exactly of concern in this project, but its small capacity
 means not much test data can be held before it needs more fed in.
 
+\subsubsection{\textbf{Distributed RAM / Registers}}
+On-chip memory has a minimum latency of 1 clock cycle as the R/W access gets
+processed.
+If a even faster memory is desired, we can use LUTs or registers to store them.
+This option would eliminate the latency but takes up much more FPGA resources.
+The capacity is even more limited as LUTs are usually used for logic.
+There will be a significant amount of data generated during testing, and the
+testbench should be as lightweight as possible to allow flexibility in the DUTs.
+As such, distributed RAM will not be used in this project for data transfer.
+
 \subsection{Runtime Test Data Generation}
-To exploit the benefits of on-chip memory, a way of generating test data
-at runtime needs to be designed.
+To exploit the benefits of on-chip memory, and circumvent the drawback of
+buffering testing data generated from the HPS, a method for generating testing
+data at runtime, on the FPGA needs to be designed.
 As arithmetic operators have a vast set of valid inputs, it is necessary to
-have cost effective test generation.
+have cost-effective test generation.
 
 A good choice here is to use random testing.
-With relatively minimum effort, random testing can provide significant coverage
+With relatively low effort, random testing can provide significant coverage
 and discover relatively subtle errors~\cite{Duran1}.
-The main drawback of random testing is the possible lack of coverage on extreme
-cases, and the usual solution is to provide handwritten tests to complement
-random testing.
+The main drawback of random testing is the possible lack of coverage for corner
+cases, for which the usual solution is to provide handwritten tests to
+complement it.
 However, as the main goal of this testbench is gauging the performance of
-the module, and not necessarily verifying the correctness of it,
-this could be ignored during stress testing.
-If logic correctness testing is later required, these special tests could be
-written and run separately with a relaxed timing restriction.
+the module, and not necessarily verifying the correctness of the module,
+having uncovered testing holes is acceptable during stress testing.
+As the project progress, special tests could be written and run separately
+with a relaxed timing restriction to cover the holes.
+It should be noted that certain corner cases may represent critical paths in
+the design.
+To combat this, the testbench provides the option to run handwritten inputs
+alongside random tests.
 
-LFSRs are a reliable way of generating pseudo random numbers fast with minimum
+LFSRs are a reliable way of generating pseudorandom numbers quickly with low
 cost~\cite{Hazwani1}.
 They will thus form the starting point of data generation.
 While it is possible for data generated to be invalid as inputs to the DUT, this
 should not be the case for most benchmarks in this project.
-Even if so, they can be dealt with at the monitor.
+Even if this is the case, they can be dealt later in the process by the monitor.
 
-With this, the software would only need to configure the randomiser, and test
-data no longer needs to pass through the HPS-FPGA bridge.
+By following this approach, the software would only need to configure the
+randomiser, and test data no longer needs to pass through the HPS-FPGA bridge.
+Thus, the testbench can provide fast and constant data to stress the DUT.
 
 \subsection{Clock Domains}
 Another concern in the system design is of the different clock domains that
 must exist on the FPGA.
-At a minimum, there needs to be two clock domains, one surrounds the DUT and
+At a minimum, there need to be two clock domains: one surrounds the DUT and
 another supports the rest of the control logic around the DUT.
-These clock frequencies can be generated and distributed with PLLs, which are
+These clock frequencies can be generated with PLLs, which are
 provided as IP Cores in the Quartus software~\cite{Altera4}.
+A clock tree will distribute them to the individual modules.
 Data crossing clock domains will be fed through FIFOs to prevent loss.
+% REVISIT JD: data crossing at 800MHZ how?
 
-The proposed structure will have the main bulk of the control logic running
-on a separate clock domain as the DUT.
-Only an interface with FIFOs and minimum logic will be running in synchronous
+The proposed structure will have the bulk of the control logic running
+in a separate clock domain to the DUT.
+Only an interface with FIFOs and minimum logic will be running in synchronicity
 with the DUT.
-Therefore, the test controls can be running at a slower frequency without
+Therefore, the test controls can run at a slower frequency without
 bottlenecking the system, allowing the DUT to be stressed further.
 
 \subsection{Result Analysis}
-If the monitor detects an interesting event such as an error, it will sent out
+% REVISIT JD: error determination how?
+If the monitor detects an interesting event such as an error, it will send
 a message to the scoreboard.
-The scoreboard has counters tracking these events, and update them back to the
-software periodically.
+The scoreboard has counters tracking these events, which are exposed and can be
+read by the HPS.
 
 The software can run statistics to provide further insights to the user.
