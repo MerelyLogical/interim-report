@@ -47,7 +47,7 @@ there is a large amount of overhead as data crosses from one architecture
 to another.
 This overhead exists in the form of both a decreased bandwidth and a increased
 delay.
-Thus, it would not be sensible for the HPS to send out data during run-time.
+Thus, it would not be sensible for the HPS to send out data during runtime.
 
 \subsubsection{\textbf{Off-chip DDR SDRAM}}
 Another thought may be to first populate the off-chip DDR SDRAM on FPGA
@@ -94,9 +94,9 @@ memory could only reach a few MB~\cite{Altera2}.
 Volatility is not exactly of concern in this project, but its small capacity
 means not much test data can be held before it needs more fed in.
 
-\subsection{Run-time Test Data Generation}
+\subsection{Runtime Test Data Generation}
 To exploit the benefits of on-chip memory, a way of generating test data
-at run-time needs to be designed.
+at runtime needs to be designed.
 As arithmetic operators have a vast set of valid inputs, it is necessary to
 have cost effective test generation.
 
@@ -138,7 +138,7 @@ with the DUT.
 Therefore, the test controls can be running at a slower frequency without
 bottlenecking the system, allowing the DUT to be stressed further.
 
-\subsection{Results Analysis}
+\subsection{Result Analysis}
 If the monitor detects an interesting event such as an error, it will sent out
 a message to the scoreboard.
 The scoreboard has counters tracking these events, and update them back to the

@@ -5,18 +5,18 @@
 
 \subsection{Project Organisation}
 This project is a part of a larger project investigating the effect of using
-high radix number systems with on-line arithmetic operators.
-The overarching aim would involve implementing such a system on FPGA and
+high-radix number representation with online arithmetic operators.
+The overarching aim involves implementing such a system on an FPGA and
 quantifying its performance improvements.
-This would be achieved through two individual projects, vertically split from
+This is achieved through two individual projects, vertically split from
 the enveloping project.
-One would design and verify the arithmetic operator modules,
-while the other would design a system from the top-level to test and
+One shall design and verify the arithmetic operator modules,
+while the other shall design a system from the top-level to test and
 evaluate these operators.
 This project deals with the system-level issues.
 
 As this project progresses in parallel with the designing of the operator
-modules, it is necessary to decouple the two project so that being individual
+modules, it is necessary to decouple the two projects so that, being individual
 projects, they can be evaluated individually.
 The success of one project should not be restricted by the status of the other.
 To this end, the goal of the system-level design is more focussed on its
@@ -24,10 +24,13 @@ functionalities and robustness.
 This relationship and its effect on the evaluation will be examined further in
 the evaluation chapter of this report.
 
-To ensure the two product will work together once they are both complete, a
+To ensure the two products will work together once they are both complete, a
 common interface needs to be agreed upon.
 The interface will be done using Qsys.
-Its reasoning falls off directly from the use of the hardware,
+% REVISIT JD: add deliverables from Junjie
+% REVISIT JD: explain interface with Qsys
+% maybe just remove this sentence?
+Its reasoning falls off directly from the use of the hardware;
 as such it will be explained in the corresponding section.
 
 % \subsection{Project Interfacing}
@@ -36,8 +39,7 @@ as such it will be explained in the corresponding section.
 \subsection{Deliverables}
 At the end of the project, the system should be able to perform the following:
 \begin{enumerate}
-  \item Connects to the arithmetic modules designed by the sister project as its
-        input;
+  \item Connect to the arithmetic modules as its input;
   \item Generate and run tests on these modules;
   \item Vary the frequency and voltage of the FPGA;
   \item Evaluate its performance.
@@ -61,14 +63,18 @@ empirical results for the project.
   \label{SoCStructure}
 \end{figure}
 
-While a plain FPGA chip would be enough for this project to work,
-having an HPS on the same chip is useful as the test software can run on it.
-A better user interface can also be constructed with more detailed,
-on-the-fly control to the FPGA.
-This means setting up the testbench would only require programming the design
+While an FPGA without an embedded CPU will be enough for this project to work,
+having an Hard Processor System (HPS) on the same chip is useful as the test
+software can run on it.
+The HPS is a separate piece of hardware that distinguishes itself from a soft
+processor, such as the Nios II, which is a processor programmed onto the FPGA
+itself.
+With this additional capacity, a better user interface can thus be constructed
+with more detailed, on-the-fly control of the FPGA.
+This means setting up the testbench will only require programming the design
 into the FPGA, followed by running the test script on the HPS.
-The product would thus be self-contained.
-It would be more accessible as no additional setup is required for the user.
+The product will thus be self-contained.
+It will be more accessible as no additional setup is required for the user.
 
 It should be noted that Xilinx offers similar boards as well.
 Its Zynq SoC family has a very comparable structure as they too integrate the
@@ -80,34 +86,44 @@ As such, a board like the ZedBoard~\cite{Xilinx2} could be just as viable for
 this project.
 
 As there are very few significant functional differences between the two brands,
-this project will initially explore with the Intel board, simply for its
-availability and the personal familiarity with their development tools.
-
+I shall initially explore with the Intel board, simply for its
+availability and my familiarity with their development tools.
+Due to the architectural differences between the logic elements between Xilinx
+and Altera FPGAs~\cite{Scekic1}, the performances on the two boards are not
+necessarily identical.
 Once the project has progressed to a point where the system design is mature and
-tested, the Xilinx alternative could be explored as an extension.
+tested, the Xilinx alternative can be explored as an extension.
 
 \subsection{Software Choice}
 The software choice follows closely with the hardware choice in this project.
-To develop for Intel FPGA, Quartus has to be used.
-The version picked is arbitrary as there are not much functional differences
-between the versions that would be critical to the project.
+To develop for Intel FPGAs, Quartus has to be used.
+The version picked is arbitrary as there are not many functional differences
+between the versions that will be critical to the project.
 As Quartus Prime 16.0 is the version installed in the computers in the
-department, the project will use the same version for convenience.
-This naturally means the hardware system will be build with the system
+department, I will use the same version simply for convenience.
+This naturally means the hardware system will be built with the system
 integration tool that comes with Quartus -- Qsys.
 
-By design, Qsys is a software used to integrated different hardware modules
-into a system.
+The Qsys software is designed to be used for integrating different hardware
+modules into a system.
 As such, it will be used as the interface for the two parallel projects.
 
-While an HLS language could be used for the design, this project requires
-detailed control of the actual hardware implementation only offered by HDLs.
-As such, the design will be written in Verilog.
+While an HLS language could be used for the design, in this design
+it suffers from a few problems and does not offer enough benefits to justify
+its use.
+Usually HLS is preferred for developing algorithms, because it is often easier
+to write them down in C first before converting them to RTL.
+However, this project has a lot of control path work and direct manipulation
+on the data bits.
+The interfaces also require detailed control of the actual hardware
+implementation only offered by HDLs.
+It is therefore not worth it to go through the conversion and as such, this
+design will be written in Verilog.
 
-Other than the hardware design tools, there are some freedom of choice in the
+Other than the hardware design tools, there is some freedom of choice on the
 HPS side of the project.
-The test will be build with Python, which will be running on an Ubuntu system
-that is installed in the HPS.
+The test will be built with Python, which will be running on an Ubuntu system
+that is installed on the HPS.
 This choice is made as there are previous unrelated projects on the same
-develop board, which means a lot of time could be saved on tedious set up works
+development board, which means a lot of time can be saved on tedious setup works
 such as getting an operating system booting.
