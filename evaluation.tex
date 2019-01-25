@@ -5,67 +5,75 @@
 % appropriate) details of experiments required to evaluate the work with respect
 % to other products or research results.
 
-\subsection{Metrics}
-One natural way of measuring the success of the project is to look at the actual
-progress and comparing it to the plan given in the implementation plan.
-It should be noted that no plan is perfect, so some deviation is allowed.
-However, if there is significant delay from the implementation plan, there must
-be justifications given.
-
+\subsection{Product Metrics}
+\subsubsection{\textbf{Robustness}}
 The next few measures looks at the performance of the final product.
-First, the maximum stress of that the testbench and provide without failing can
-be used as a success measure.
-A testbench with a higher maximum frequency can reveal a wider picture in the
-performance of the DUT.
+First, the maximum stress of which the testbench can provide without failing is
+a good metric.
+This can be quantitatively measured by the maximum data throughput across the
+DUT, and the maximum frequency that the DUT can be running where the testbench
+remains reliable.
+A robust testbench with a higher maximum frequency can reveal a wider picture
+in the performance of the DUT.
 This would hopefully allow more insights to be gained regarding the DUT, or
 it could mean that the testbench can be used for future designs that may be
 faster than the current one.
-As the main quantitative metric, this would be a vital indicator of the
+As the main quantitative metric, this will be a vital indicator of the
 project's success.
 
-The Robustness of the testbench is also vital to the product's performance.
-The testbench should be free from errors within a reasonable operating range.
-If the testbench becomes unreliable with some minor changes to the system,
-the data that can be obtained would be very limited.
-The failure of the DUT can no longer be confirmed, as the error may be in the
-testbench instead of the DUT.
-
-The ease of use of the testbench could be another evaluation point.
+\subsubsection{\textbf{User-friendliness}}
+The ease of use of the testbench can be another evaluation point.
 On the hardware side, the verification system can be packaged into a Qsys
 module.
-Given the DUT is also a module with an agreed interface, they could be easily
+Given the DUT is also a module with an agreed interface, it can easily be
 connected in Qsys for testing.
+% REVISIT JD: Verilog / VHDL not a valid point
 For example, the DUT may be written in VHDL for its deterministic nature, but
 the testbench maybe written in Verilog for its simplicity, but as both can be
 synthesised into a module, they would still be compatible in Qsys.
 On the software side, a user-friendly interface could be built.
-A usable command line interface maybe good enough, but a simple graphic
-interface could make the tests much more visual and interesting.
+A usable command line interface may be good enough, but a simple graphic
+interface could make the tests much more visual and informative.
 
 The interface could also provide information on the failure in the DUT.
-A better testbench would provide more insightful details when the DUT fails.
+A better testbench will provide more insightful details when the DUT fails.
 This would make debugging or evaluating the design much simpler.
 Along with the GUI, this project has many optional extensions that would be
-discussed further in the corresponding section.
+discussed further in section 6.2.
 After the main goal of the project being met, the number of optional functions
-implemented would become a good measure of the progress of the project.
+implemented becomes a good measure of the progress of the project.
 
-Since the project is of the verification system, the results from the benchmarks
-should not be used for evaluation of this project.
+\subsubsection{\textbf{Flexibility}}
+% REVISIT JD: rewrite flexibility paragraph
+The flexibility of the testbench is also vital to the product's performance.
+The testbench should suitable for a range of DUTs.
+This will allow the testbench to be used for future experiments.
 
+\subsubsection{\textbf{Note}}
 A noteworthy point in evaluation is regarding the progress of the sister project.
-The purpose of the testbench is to verify and stress the arithmetic designs.
-If these designs would not be available near the end of this project,
+The purpose of the testbench is to verify and stress arithmetic designs.
+If these designs are not available near the end of this project,
 it would be difficult to empirically prove the capabilities of the testbench
 and its surrounding system.
-It is not impossible, as there are still substitutions for them.
+Since the project comprises a verification system, the results from the
+benchmarks should not be used for evaluation of this project.
+It is not impossible, as there are still substitutes for them.
 For functional purposes, standard off-the-shelf arithmetic modules could be
 used in-lieu.
 For other purposes, it is possible to have a model done before the actual design
 starts in the paired project.
-While this would allow this project to progress easier, it would be extra work
-for the other project, which is ultimately up to the decision of the other
-student.
+While this would allow this project to progress, it would be extra work
+for the other project.
 In all, it would be nice to have a solid arithmetic module completely to run
 in this testbench, but without one, the system can still be built and completed,
 albeit generating less useful data towards the overall aim of the project.
+
+\subsection{Project Metrics}
+\subsubsection{\textbf{Implementation Plan}}
+One natural way of measuring the success of the project is to look at the actual
+progress and compare it to the implementation plan.
+It should be noted that no plan is perfect, so some deviation is allowed.
+However, if there is significant delay from the plan, there must be
+justifications given.
+
+\subsubsection{\textbf{Fallbacks and Extensions}}
