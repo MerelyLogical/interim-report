@@ -12,13 +12,13 @@
 
 
 \subsection{Milestones}
-The project is divided into three main phases.
+The project will be divided into three main phases.
 The initial one is of research and learning.
-This is to lay the foundation to the project, and is represented by task 2 and 3
-in the timeline.
+This is to lay the foundation to the project, and is represented by tasks 2 and
+3 in the timeline.
 The second phase is building the core product of the project.
-This is includes task 4, 5 and 6 in the timeline.
-The final phase is enhancing the product, represented by task 7, 8, and 9.
+This includes tasks 4, 5 and 6 in the timeline.
+The final phase is enhancing the product, represented by tasks 7, 8, and 9.
 
 \subsection{Timeline}
 \begin{figure*}
@@ -38,117 +38,126 @@ extension.
 
 \subsubsection{\textbf{Term Time and Examinations}}
 Time available for the project varies greatly throughout the year.
-The greatest factors would be the term time and the examinations.
+The greatest factors will be term time and examinations.
 The time needed for revision has been marked in the chart.
-These times will have minimum progress to the project.
+These times will allow minimal progress of the project.
 
-During term time, there would be coursework deadlines, which would also
-negatively affect the time that could be allocated to this project.
-One coursework module was selected for Autumn and three was picked for Summer.
-As such, it is expected that the progress would be somewhat slower during Autumn
+During term time, there will be coursework deadlines, which will also
+negatively affect the time that can be allocated to this project.
+One coursework module was selected for Autumn and three were picked for Summer.
+As such, it is expected that the progress will be somewhat slower during Autumn
 but significantly slower during Spring.
-To make up for the time lost, a part of Christmas were used and a few weeks
+To make up for the time lost, a part of Christmas was used and a few weeks
 from Easter will also be committed towards the project.
 
 The list of tasks were then laid out onto the timeline.
-This is done according to its expected difficulty and the expected availability
-to work on these tasks.
+This was done according to their expected difficulty and the expected
+availability to work on those tasks.
 
 \subsubsection{\textbf{Background Research}}
 To fill in the background knowledge required to work on this project, the first
 months were spent on reading textbooks and papers.
-The research is to provide context and motivation to the project.
+The research was to provide context and motivation for the project.
 It also provided an overview of the field of research and some understanding
-towards the current state-of-art.
+towards the current state-of-the-art.
 Most importantly, it offered the necessary knowledge needed for this project.
-The result of this research is summarised back in chapter III.
+The result of this research was summarised in chapter III.
 
 \subsubsection{\textbf{Learning the Tools}}
 Due to the lack of experience in programming hybrid SoCs and the lack of
-knowledge in the current state-of-art digital arithmetic designs, a significant
-portion of the effort was spend on researching and learning the skills
+knowledge in the current state-of-the-art digital arithmetic designs,
+significant effort was spent on researching and learning the skills
 necessary to carry out the project.
 This involved building a small testing system on the board.
-Details regarding this testing system can be found in the Work to Date section.
+Details regarding this testing system can be found in section V-C.
 
 \subsubsection{\textbf{Testbench Structure}}
-Once comfortable with the tools, The main design of the testbench can start.
-This task would be the foundation of this project, as it would provide a basis
-for all following features.
+Once comfortable with the tools, the main design of the testbench can start.
+This task will be the foundation of this project, as it will provide a basis
+for all of the following features.
 A skeletal testbench should be complete and functional at the end of this
 task.
-This means the an operator module matching the correct specifications can
-be loaded into the testbench, and compute some non-trivial tests.
+This means an operator module matching the correct specifications can
+be loaded into the testbench to run basic tests.
+To reduce risk and uncertainty at this stage in the project, this basic
+testbench is not required to have the full flexibility of the final product
+in terms of compatibility.
+While it is still undesirable to hardcode parameters and features,
+the support for DUTs different from the one built by the other project will
+only be addressed later as task 7.
 
 \subsubsection{\textbf{Variable Frequency}}
-As the project seeks to quantify the performance across a range of frequencies,
-the most important feature of the system would be the ability to vary this
+As the project seeks to quantify performance across a range of frequencies,
+the most important feature of the system will be the ability to vary this
 parameter.
-This would be done by controlling the PLLs with the HPS~\cite{Altera4}.
+This will be done by controlling the PLLs with the HPS~\cite{Altera4}.
 Once implemented, tests will be run to explore and confirm the maximum
-frequency the testbench would remain reliable.
+frequency for which the testbench can remain reliable.
 If it does not meet the planned target, the testbench may need to be redesigned,
-and this project would be under some risk.
+and the project would be under some risk.
 
 While most of the later sections of the project can be selectively added or
 removed from the scope relatively easily, this initial setup of the testbench
 structure will always remain critical to any further improvements.
-It is thus vital that the bare minimum system gets done early.
-To ensure this happens, this task and the testbench structure will be placed in
-the highest priority before its completion, and any blocking issue should be
-discussed with the supervisor if it could not be resolved after reasonable
+It is thus vital that the bare minimum system is completed early.
+To ensure that this happens, this task and the testbench structure will be
+placed in the highest priority before its completion, and any blocking issue
+will be discussed with the supervisor if it cannot be resolved after reasonable
 effort.
 
 \subsubsection{\textbf{Benchmarks}}
-With a promising base, more intricate tests and benchmarks can be designed.
-These would aim to reflect the system's performance running meaningful compute
+Once the testbench can reach a satisfying performance, more intricate tests and
+benchmarks can be designed.
+These aims to reflect the system's performance running meaningful compute
 tasks.
 The systems enveloping the arithmetic modules could be stressed with popular
-algorithms to evaluate real-life obtainable speed up.
-In addition to better tests, this task also aims to obtain better data from
-these tests.
+algorithms to evaluate real-life obtainable speedups.
+In addition to running better tests, we also aim to obtain better data from
+the tests.
 The minimum result required here would be numerical information on power
 consumption, FPGA resources required, and the data throughput.
+% REVISIT JD: how to obtain power consumption number?
 
-The last three tasks forms the core of this project.
-In other words, all three tasks must be completed for a minimum functional
-product.
-The following tasks would be mostly considered as useful extensions.
-While not as vital as the core tasks, the following tasks greatly improves the
-quality of life and usability, and thus are equally critical to the success
+The last three tasks form the core of this project.
+In other words, all three tasks must be completed for a functional product.
+The following tasks will be mostly considered as useful extensions.
+While not as vital as the core tasks, completion of the following tasks would
+greatly improve usability, and thus are still relevant to the success
 of the final product.
 
 \subsubsection{\textbf{Configurable Modules}}
-So far, only modules of a specific I/O width and numerical representation
-could be tested.
+So far, only modules of a specific I/O width and numerical representation can
+be tested.
 It might be interesting to explore arithmetic modules with other configurations.
-To allow the testbench be used for further experiments or future projects,
-it is helpful to have a configurable testbench.
-Qsys components can be configured with the Hardware Component Definition
+To allow the testbench to be used for further experiments or future projects,
+it will be helpful to have a configurable testbench.
+Qsys components can be configured with a Hardware Component Definition
 File~\cite{Altera5}.
 The plan is to build the testbench as a Qsys component, then use Qsys Component
 Editor as an interface for configuration.
+This is because the Component Editor provides a friendly interface for
+configuration directly from analysing the testbench design file.
 
 \subsubsection{\textbf{Handling Failures}}
 Another improvement to the testbench is related to how it handles failures
 in the module.
-It would be much more insightful for the user, if a more insightful failure
-message is provided in addition to just a simple failure rate.
+It would be much more insightful for the user if a more insightful failure
+message were provided in addition to just a simple failure rate.
 This could include examples of failed output against expected output,
 or statistical data describing the pattern of failures.
-This additional logic during run-time may degrade performance of the testbench,
+This additional logic required may degrade performance of the testbench,
 so it would be useful for the verbosity of this information to be configurable
 by the user.
 
 \subsubsection{\textbf{Interactive UI}}
-If time allows for even greater user experience enhancements, an real-time
+If time allows for even greater user experience enhancements, real-time
 interactive graphical user interface could be constructed for the final
 demonstration.
-This would visualise the reduction of the module's precision as the user
+This would visualise the reduction of the module's accuracy as the user
 increases the clock rate.
 However, this would take significant time and effort, and this task will
 be re-evaluated when the project progresses to the stage.
-An time-saving yet functional alternative would be a command-line interface
+A time-saving yet functional alternative would be a command-line interface
 with a well-documented user guide.
 
 \subsubsection{\textbf{Reports and Presentation}}
@@ -156,33 +165,36 @@ The reports and the presentation are the most visible in all deliverables of
 this entire process.
 As such, while not directly contributing to the progress of the project,
 they are still vital to its success.
-The reports will be written alongside with the engineering process.
+The reports will be written alongside the engineering process.
 At the end, around a week of time will be spent solely on completing and
 polishing up the final report.
 This should allow ample time for a well-organised submission.
 
 The week after the final report will be used for the presentation.
-This would involve preparing a slide deck, a demo, and a script.
+This involves preparing a slide deck, a demonstration, and a script.
+During the demonstration, the product will be exhibited in front of the
+audience.
+The details of the exhibition largely depends on the status of task 9.
 
 \subsection{Work to Date}
 % REVISIT: include the use of git somewhere
 
-Before any engineering work is done towards the final product, a small module
+Before any engineering work was done towards the final product, a small module
 was built to learn the environment.
-This module should be simple yet covers enough grounds to provide as much
+This module needed to be simple yet covered enough grounds to provide as much
 learning during the process as possible without taking up too much actual
 development time towards the product.
-As the greatest unfamiliarity is with the interaction across the HPS-FPGA
+As the greatest unfamiliarity was with the interaction across the HPS-FPGA
 bridge, a simple hardware accelerated adder was made for this training.
 
 \subsubsection{\textbf{FPGA Side}}
 Programming the FPGA to communicate with the HPS is no trivial task.
-Luckily, there exist a golden system reference design~\cite{Rocket1} for
+Luckily, there exists a golden system reference design~\cite{Rocket1} for
 the board in use for this project.
 Unfortunately, support for certain versions of Quartus are missing from
 the GSRD download database, including the one used for this project, 16.0.
-While the design could be opened with a different version of the software,
-it would cause a series of conflicts usually related to using IP Cores that
+While the design can be opened with a different version of the software,
+it causes a series of conflicts usually related to using IP cores that
 have changed over the iterations.
 To circumvent this issue cleanly, GSRD version 14.1 was downloaded and compiled
 on a separate install of Quartus II 14.1.
@@ -191,31 +203,31 @@ required for this project to be rebuilt with Quartus Prime 16.0.
 
 From the perspective of the FPGA, The HPS exposes three bridges for
 connections~\cite{Altera6}.
-As this is a relatively simple task, the lightweight bridge is used.
+As this is a relatively simple task, the lightweight bridge was used.
 Module \texttt{altera\_hps} exposes the master of this bridge as
 \texttt{h2f\_lw\_axi\_master}.
-Next, the actual hardware adder needs to be built and integrated as a hardware
+Next, the actual hardware adder was built and integrated as a hardware
 module in Qsys with a matching interface.
 A simple adder can produce its result after one clock cycle.
 This greatly simplifies the logic required for the Avalon slave interface.
-The logic for the control and data signals are then written according to the
+The logic for the control and data signals were thus written according to the
 interface specifications~\cite{Intel3}.
 Following the naming conventions for the signals allows Qsys Component Editor
 to automatically detect the Avalon slave from this module at analysis.
 This saves the troubles of editing the \texttt{\_hw.tcl} file.
-To experiment with module configuration, the adder is designed with variable
+To experiment with module configuration, the adder was designed with variable
 width.
 
-The adder is then instantiated and connected to the rest of the system with
+The adder was then instantiated and connected to the rest of the system with
 two clicks in Qsys.
-From there, Qsys can generate the HDL for the entire system, which is then
+From there, Qsys could generate the HDL for the entire system, which was then
 compiled to a bitstream file.
-With the bitstream ready, the work now shifts to the HPS.
+With the bitstream ready, the work now shifted to the HPS.
 
 \subsubsection{\textbf{HPS Side}}
-The HPS runs Ubuntu and a bash script has been written to load the bitstream
+The HPS runs Ubuntu and a Bash script has been written to load the bitstream
 onto the FPGA.
-Next, A program is written in Python to test the hardware design from the HPS.
+Next, a program was written in Python to test the hardware design from the HPS.
 The interfaces are mapped onto the physical memory, thus they can be accessed
 by opening \texttt{/dev/mem}.
 Checking against the specifications~\cite{Altera6}, the lightweight master is
@@ -223,26 +235,25 @@ at \texttt{0xFF20\_0000}.
 Qsys allocates the memory spaces of modules relatively, so when it reports
 that the adder has been placed at \texttt{0x0010\_0000}, it is physically at
 \texttt{0xFF30\_0000}.
-The adder is designed to have its two inputs at \texttt{0x00} and
-\texttt{0x10} and its output at \texttt{0x20}, which has been assigned by Qsys
+The adder was designed to have its two inputs at \texttt{0x00} and
+\texttt{0x10} and its output at \texttt{0x20}, which were assigned by Qsys
 relatively to \texttt{0xFF30\_0000}.
 
-With the memory mapping understood, the script can be designed to closely
+With the memory mapping understood, the program was designed to closely
 mirror this relative relationship between the modules using classes.
-For example, this allows the adder to still define its output at \texttt{0x20}
-in the adder class, and then initialised with an AXI module bringing it to the
-correct physical address.
+For example, the adder defines its output at \texttt{0x20}, but its read and
+write methods are inherited from an AXI class that brings it to the
+correct physical address by adding the address of the bridge defined in it.
 This parallel between software and hardware should be helpful as the product
 gets more complex.
 
-% REVISIT: credit James?
-
-For testing, 1000 add operations are executed separately with and without the
-hardware acceleration of the FPGA.
-While called hardware acceleration, it is not expected for the FPGA to have
-a higher performance than the HPS in this testing case.
-The CPU is reasonably efficient in calculating additions, while to calculate
-on the FPGA has a large overhead cost as the data transfers across the bridge
-back and forth.
+To verify what I have built and learnt was correct, 1000 add operations were
+executed separately with and without the hardware acceleration of the FPGA.
+The results were compared and confirmed that this training module worked.
+While called hardware acceleration, the FPGA actually had worse performance
+than the HPS in this testing case.
+The CPU is reasonably efficient in calculating additions, while calculating
+on the FPGA requires the adder I/O data going through the HPS-FPGA bridge.
+This incurs a significant overhead, thus slowing it down.
 
 % REVISIT: add test data here
