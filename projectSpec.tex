@@ -10,7 +10,7 @@ The overarching aim involves implementing such a system on an FPGA and
 quantifying its performance improvements.
 This is achieved through two individual projects, vertically split from
 the enveloping project.
-One shall design and verify the arithmetic operator modules,
+One shall design the arithmetic operator modules,
 while the other shall design a system from the top-level to test and
 evaluate these operators.
 This project deals with the system-level issues.
@@ -25,16 +25,12 @@ This relationship and its effect on the evaluation will be examined further in
 the evaluation chapter of this report.
 
 To ensure the two products will work together once they are both complete, a
-common interface needs to be agreed upon.
+common interface is agreed upon.
 The interface will be done using Qsys.
-% REVISIT JD: add deliverables from Junjie
-% REVISIT JD: explain interface with Qsys
-% maybe just remove this sentence?
-Its reasoning falls off directly from the use of the hardware;
-as such it will be explained in the corresponding section.
-
-% \subsection{Project Interfacing}
-% REVISIT: project interfacing section necessary?
+The unit-level project will build different operators, which can have varying
+arithmetic functions and designs.
+These will be packaged into Qsys modules, which will become the DUTs of the
+testbench.
 
 \subsection{Deliverables}
 At the end of the project, the system should be able to perform the following:
@@ -126,3 +122,8 @@ that is installed on the HPS.
 This choice is made as there are previous unrelated projects on the same
 development board, which means a lot of time can be saved on tedious setup works
 such as getting an operating system booting.
+
+Git is used as the version control system for this project.
+A list of repositories on GitHub holds all files related to this project.
+Readme files on the repositories and the commit histories will serve as
+digital logbooks to this project.

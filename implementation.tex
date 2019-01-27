@@ -11,22 +11,12 @@
 % document what you have already completed.
 
 
-\subsection{Milestones}
-The project will be divided into three main phases.
-The initial one is of research and learning.
-This is to lay the foundation to the project, and is represented by tasks 2 and
-3 in the timeline.
-The second phase is building the core product of the project.
-This includes tasks 4, 5 and 6 in the timeline.
-The final phase is enhancing the product, represented by tasks 7, 8, and 9.
-
 \subsection{Timeline}
-\begin{figure*}[!b]
-  \centering
-  \input{timeline}
-  \caption{Project Timeline}
-  \label{Timeline}
-\end{figure*}
+The project is divided into three main phases.
+The initial one is of research and learning.
+This is to lay the foundation to the project.
+The second phase is building the core product of the project.
+The final phase is enhancing the product.
 
 In order to track the progress and success of the project, the difficulties
 of the deliverables need to be analysed first.
@@ -34,7 +24,14 @@ Planning slacks are appended after all future tasks to reduce uncertainties.
 Figure \ref{Timeline} provides a visualisation of the project timeline.
 The slacks are indicated by the shaded areas in the chart.
 
-\subsubsection{\textbf{Term Time and Examinations}}
+\begin{figure*}[!b]
+  \centering
+  \input{timeline}
+  \caption{Project Timeline}
+  \label{Timeline}
+\end{figure*}
+
+\subsubsection{Term Time and Examinations}
 Time available for the project varies greatly throughout the year.
 The greatest factors will be term time and examinations.
 The time needed for revision has been marked in the chart.
@@ -60,8 +57,14 @@ With reasonable slack for all tasks taken into account, the worst case will
 take 19 weeks.
 As such, The tasks near the end are planned so that they can be easily dropped
 if there time becomes an issue.
+This is reflected in the plan, as even in the worst case scenario, completing
+all core tasks takes 12 weeks.
+On the other hand, if all tasks were complete in 12 weeks, the remaining
+time can always be used to improve the product further.
+This can either mean going back to optimise earlier tasks,
+or come up with new ones.
 
-\subsubsection{\textbf{Background}}
+\subsubsection{Background}
 
 \textit{Research} --
 To fill in the background knowledge required to work on this project, the first
@@ -78,9 +81,11 @@ knowledge in the current state-of-the-art digital arithmetic designs,
 significant effort was spent on researching and learning the skills
 necessary to carry out the project.
 This involved building a small testing system on the board.
-Details regarding this testing system can be found in section 5.3.
+The process taught me not only how to handle a hybrid SoC, but also how to
+handle the Quartus file system with git.
+Details regarding this testing system can be found in section 5.2.
 
-\subsubsection{\textbf{Core Tasks}}
+\subsubsection{Core Tasks}
 
 While most of the later sections of the project can be selectively added or
 removed from the scope relatively easily, this initial setup of the testbench
@@ -130,11 +135,11 @@ The minimum result required here would be numerical information on power
 consumption, FPGA resources required, and the data throughput.
 % REVISIT JD: how to obtain power consumption number?
 
-\subsubsection{\textbf{Extensions}}
+\subsubsection{Extensions}
 
-The last three tasks form the core of this project.
-In other words, all three tasks must be completed for a functional product.
-The following tasks will be mostly considered as useful extensions.
+The previous three tasks form the core of this project.
+In other words, all core tasks must be completed for a functional product.
+The following tasks however, will be mostly considered as useful extensions.
 While not as vital as the core tasks, completion of the following tasks would
 greatly improve usability, and thus are still relevant to the success
 of the final product.
@@ -174,7 +179,7 @@ be re-evaluated when the project progresses to the stage.
 A time-saving yet functional alternative would be a command-line interface
 with a well-documented user guide.
 
-\subsubsection{\textbf{Reports and Presentation}}
+\subsubsection{Reports and Presentation}
 The reports and the presentation are the most visible in all deliverables of
 this entire process.
 As such, while not directly contributing to the progress of the project,
@@ -191,8 +196,6 @@ audience.
 The details of the exhibition largely depends on the status of task 9.
 
 \subsection{Work to Date}
-% REVISIT: include the use of git somewhere
-
 Before any engineering work was done towards the final product, a small module
 was built to learn the environment.
 This module needed to be simple yet covered enough grounds to provide as much
@@ -201,7 +204,7 @@ development time towards the product.
 As the greatest unfamiliarity was with the interaction across the HPS-FPGA
 bridge, a simple hardware accelerated adder was made for this training.
 
-\subsubsection{\textbf{FPGA Side}}
+\subsubsection{FPGA Side}
 Programming the FPGA to communicate with the HPS is no trivial task.
 Luckily, there exists a golden system reference design~\cite{Rocket1} for
 the board in use for this project.
@@ -238,7 +241,7 @@ From there, Qsys could generate the HDL for the entire system, which was then
 compiled to a bitstream file.
 With the bitstream ready, the work now shifted to the HPS.
 
-\subsubsection{\textbf{HPS Side}}
+\subsubsection{HPS Side}
 The HPS runs Ubuntu and a Bash script has been written to load the bitstream
 onto the FPGA.
 Next, a program was written in Python to test the hardware design from the HPS.
@@ -269,5 +272,3 @@ than the HPS in this testing case.
 The CPU is reasonably efficient in calculating additions, while calculating
 on the FPGA requires the adder I/O data going through the HPS-FPGA bridge.
 This incurs a significant overhead, thus slowing it down.
-
-% REVISIT: add test data here
