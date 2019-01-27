@@ -30,11 +30,9 @@ The final phase is enhancing the product, represented by tasks 7, 8, and 9.
 
 In order to track the progress and success of the project, the difficulties
 of the deliverables need to be analysed first.
+Planning slacks are appended after all future tasks to reduce uncertainties.
 Figure \ref{Timeline} provides a visualisation of the project timeline.
-Some slack is included into the plan to reduce risk and give potential for
-extension.
-
-% REVISIT: coloured tasks!
+The slacks are indicated by the shaded areas in the chart.
 
 \subsubsection{\textbf{Term Time and Examinations}}
 Time available for the project varies greatly throughout the year.
@@ -53,8 +51,19 @@ from Easter will also be committed towards the project.
 The list of tasks were then laid out onto the timeline.
 This was done according to their expected difficulty and the expected
 availability to work on those tasks.
+Deducting 5 weeks for revision, 15 weeks remain before the submission of the
+final report.
+To still have enough flexibility, the tasks were planned to be possible to
+complete in 12 weeks.
+However, 12 weeks is the best case scenario.
+With reasonable slack for all tasks taken into account, the worst case will
+take 19 weeks.
+As such, The tasks near the end are planned so that they can be easily dropped
+if there time becomes an issue.
 
-\subsubsection{\textbf{Background Research}}
+\subsubsection{\textbf{Background}}
+
+\textit{Research} --
 To fill in the background knowledge required to work on this project, the first
 months were spent on reading textbooks and papers.
 The research was to provide context and motivation for the project.
@@ -63,7 +72,7 @@ towards the current state-of-the-art.
 Most importantly, it offered the necessary knowledge needed for this project.
 The result of this research was summarised in chapter 3.
 
-\subsubsection{\textbf{Learning the Tools}}
+\textit{Learning the Tools} --
 Due to the lack of experience in programming hybrid SoCs and the lack of
 knowledge in the current state-of-the-art digital arithmetic designs,
 significant effort was spent on researching and learning the skills
@@ -71,7 +80,18 @@ necessary to carry out the project.
 This involved building a small testing system on the board.
 Details regarding this testing system can be found in section 5.3.
 
-\subsubsection{\textbf{Testbench Structure}}
+\subsubsection{\textbf{Core Tasks}}
+
+While most of the later sections of the project can be selectively added or
+removed from the scope relatively easily, this initial setup of the testbench
+structure will always remain critical to any further improvements.
+It is thus vital that the bare minimum system is completed early.
+To ensure that this happens, this task and the testbench structure will be
+placed in the highest priority before its completion, and any blocking issue
+will be discussed with the supervisor if it cannot be resolved after reasonable
+effort.
+
+\textit{Testbench Structure} --
 Once comfortable with the tools, the main design of the testbench can start.
 This task will be the foundation of this project, as it will provide a basis
 for all of the following features.
@@ -86,7 +106,7 @@ While it is still undesirable to hardcode parameters and features,
 the support for DUTs different from the one built by the other project will
 only be addressed later as task 7.
 
-\subsubsection{\textbf{Variable Frequency}}
+\textit{Variable Frequency} --
 As the project seeks to quantify performance across a range of frequencies,
 the most important feature of the system will be the ability to vary this
 parameter.
@@ -96,16 +116,8 @@ frequency for which the testbench can remain reliable.
 If it does not meet the planned target, the testbench may need to be redesigned,
 and the project would be under some risk.
 
-While most of the later sections of the project can be selectively added or
-removed from the scope relatively easily, this initial setup of the testbench
-structure will always remain critical to any further improvements.
-It is thus vital that the bare minimum system is completed early.
-To ensure that this happens, this task and the testbench structure will be
-placed in the highest priority before its completion, and any blocking issue
-will be discussed with the supervisor if it cannot be resolved after reasonable
-effort.
 
-\subsubsection{\textbf{Benchmarks}}
+\textit{Benchmarks} --
 Once the testbench can reach a satisfying performance, more intricate tests and
 benchmarks can be designed.
 These aims to reflect the system's performance running meaningful compute
@@ -118,6 +130,8 @@ The minimum result required here would be numerical information on power
 consumption, FPGA resources required, and the data throughput.
 % REVISIT JD: how to obtain power consumption number?
 
+\subsubsection{\textbf{Extensions}}
+
 The last three tasks form the core of this project.
 In other words, all three tasks must be completed for a functional product.
 The following tasks will be mostly considered as useful extensions.
@@ -125,7 +139,7 @@ While not as vital as the core tasks, completion of the following tasks would
 greatly improve usability, and thus are still relevant to the success
 of the final product.
 
-\subsubsection{\textbf{Configurable Modules}}
+\textit{Configurable Modules} --
 So far, only modules of a specific I/O width and numerical representation can
 be tested.
 It might be interesting to explore arithmetic modules with other configurations.
@@ -138,7 +152,7 @@ Editor as an interface for configuration.
 This is because the Component Editor provides a friendly interface for
 configuration directly from analysing the testbench design file.
 
-\subsubsection{\textbf{Handling Failures}}
+\textit{Handling Failures} --
 Another improvement to the testbench is related to how it handles failures
 in the module.
 It would be much more insightful for the user if a more insightful failure
@@ -149,7 +163,7 @@ This additional logic required may degrade performance of the testbench,
 so it would be useful for the verbosity of this information to be configurable
 by the user.
 
-\subsubsection{\textbf{Interactive UI}}
+\textit{Interactive UI} --
 If time allows for even greater user experience enhancements, real-time
 interactive graphical user interface could be constructed for the final
 demonstration.
