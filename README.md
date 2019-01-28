@@ -6,9 +6,9 @@
 - [x] Work done to date
 - [x] Structure shift, break up Chapter III, highlight TB comparison early
 - [x] Acronym check
-- [ ] Explain buffer in interface in Clock domain section
+- [x] Explain buffer in interface in Clock domain section
 - [ ] Find motivation for high radix on FPGA
-- [ ] Consider buffering test to on-chip memory
+- [x] Consider buffering test to on-chip memory
 
 
 ## Notes:

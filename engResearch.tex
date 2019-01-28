@@ -1,13 +1,11 @@
 \section{Engineering Background}
 
 \subsection{Testbench Architecture}
-
-% REVISIT: find more testbench architectures to compare with
 The design of the verification system is the major engineering challenge of this
 project.
 While there have been many similar performance analyses done on hybrid SoCs
 before, each of them used their own, usually ad hoc, testbench
-design~\cite{Shi1}.
+design~\cite{Shi1}~\cite{Li1}.
 As such, most testbench are not designed to be scalable or portable, serving
 only what they are built for.
 In this project, I shall use a generic structure inspired by that of an agent
@@ -54,7 +52,6 @@ This gives a target frequency of 800MHz.
 Assuming a data width of 32-bit, the target data transfer rate is then 
 estimated to be 25.6Gbps.
 
-% REVISIT: possible to find exact bandwidth of the bridge?
 \subsubsection{\textbf{HPS-FPGA Bridge}}
 As the testing is to be controlled by the HPS, the HPS-FPGA bridge will be the
 immediate bottleneck if the test data is to flow from HPS to FPGA.
