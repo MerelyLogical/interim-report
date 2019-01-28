@@ -116,6 +116,7 @@ The capacity is even more limited as LUTs are usually used for logic.
 There will be a significant amount of data generated during testing, and the
 testbench should be as lightweight as possible to allow flexibility in the DUTs.
 As such, distributed RAM will not be used in this project for data transfer.
+Registers will still be used as they are essential for many other purposes.
 
 \subsection{Runtime Test Data Generation}
 To exploit the benefits of on-chip memory, and circumvent the drawback of
@@ -160,17 +161,69 @@ These clock frequencies can be generated with PLLs, which are
 provided as IP Cores in the Quartus software~\cite{Altera4}.
 A clock tree will distribute them to the individual modules.
 Data crossing clock domains will be fed through FIFOs to prevent loss.
-% REVISIT JD: data crossing at 800MHZ how?
 
 The proposed structure will have the bulk of the control logic running
 in a separate clock domain to the DUT.
-Only an interface with FIFOs and minimum logic will be running in synchronicity
+Only an interface with FIFOs will be running in synchronicity
 with the DUT.
 Therefore, the test controls can run at a slower frequency without
 bottlenecking the system, allowing the DUT to be stressed further.
+The problem now is to ensure the monitor can handle the stream of DUT output
+coming in at a higher frequency that it is running at.
+As the monitor needs to calculate the correct data before it can check if the
+DUT output is correct, it cannot keep up with the speed of the DUT.
+This report consider three alternatives.
+
+\subsubsection{Partial Monitors}
+A lightweight idea is to implement a parity checker instead of a full model
+inside the monitors.
+For example, to check an adder, the monitor can just check if the final bit
+with a LUT acting as a XOR gate.
+
+Although this is reasonably fast, it cannot be extended once the DUT is faster
+than a parity calculation followed by a comparison.
+More critically, it provides no additional information once the DUT fails, and
+it has a 50\% rate of ignoring an error.
+If this is to be solved by increasing the number of bits checked, the problem
+returns back to its initial state.
+Thus this method will not be experimented.
+
+\subsubsection{Lazy Monitors}
+An more scalable alternative is to have the monitor only check a selection of
+data sets.
+For example, if the monitor is programmed to check every third test point,
+statistically it will make little difference to the final result.
+In case the DUT is aware of this and only produce correct outputs on every third
+operation, this process can be randomised too.
+
+This method can be extended if the DUT get fast simply by skipping more checks,
+and it has the full information when it detects an error.
+However, this method needs the extra logic in the random controller, making the
+monitor slightly more complex than it probably should be.
+
+\subsubsection{Parallel Monitors}
+As the test data is uniform, the monitor can be parallelised in to a number of
+sub-monitors.
+The sub-monitors is connected to a arbiter that is connected to three FIFOs.
+The FIFOs are the inputs and the output of the DUT.
+A round robin arbiter distributes the data to the sub-monitors equally.
+The results from each sub-monitor are then sent to a single scoreboard.
+To avoid potential hazards, the output from the sub-monitors will be buffered
+before processed by the scoreboard.
+
+This does not have data dependency on a random controller, and it can
+fully guarantee the correctness of the DUT.
+It is also scalable as more sub-monitors can be added it the DUT fills up its
+output buffer.
+As a downside, this method takes up the most FPGA resources to implement.
+
+Comparing across the three methods, the parallel monitors will be built first
+for this project, as it offers the best functionalities.
+Although unlikely, if a fatal issue arises in this design, or if the testbench
+needs to be more lightweight, then the lazy monitor will be used as the
+alternative.
 
 \subsection{Result Analysis}
-% REVISIT JD: error determination how?
 If the monitor detects an interesting event such as an error, it will send
 a message to the scoreboard.
 The scoreboard has counters tracking these events, which are exposed and can be

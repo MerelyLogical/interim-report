@@ -90,7 +90,7 @@ Details regarding this testing system can be found in section 5.2.
 While most of the later sections of the project can be selectively added or
 removed from the scope relatively easily, this initial setup of the testbench
 structure will always remain critical to any further improvements.
-It is thus vital that the bare minimum system is completed early.
+It is thus vital that the base system is completed early.
 To ensure that this happens, this task and the testbench structure will be
 placed in the highest priority before its completion, and any blocking issue
 will be discussed with the supervisor if it cannot be resolved after reasonable
@@ -116,7 +116,9 @@ As the project seeks to quantify performance across a range of frequencies,
 the most important feature of the system will be the ability to vary this
 parameter.
 This will be done by controlling the PLLs with the HPS~\cite{Altera4}.
-Once implemented, tests will be run to explore and confirm the maximum
+TimeQuest Timing Analyser in Quartus can be useful as an estimation of what is
+achievable.
+Once implemented, empirical tests will be run to explore and confirm the maximum
 frequency for which the testbench can remain reliable.
 If it does not meet the planned target, the testbench may need to be redesigned,
 and the project would be under some risk.
@@ -129,11 +131,14 @@ These aims to reflect the system's performance running meaningful compute
 tasks.
 The systems enveloping the arithmetic modules could be stressed with popular
 algorithms to evaluate real-life obtainable speedups.
+
 In addition to running better tests, we also aim to obtain better data from
 the tests.
-The minimum result required here would be numerical information on power
-consumption, FPGA resources required, and the data throughput.
-% REVISIT JD: how to obtain power consumption number?
+The results required here would be numerical information on power
+consumption, FPGA resources used, and the data throughput.
+FPGA resources used can be obtained from compilation report in Quartus.
+Data throughput can be calculated from clock frequency and data width.
+Power consumption can be estimated from PowerPlay Power Analyser in Quartus.
 
 \subsubsection{Extensions}
 
