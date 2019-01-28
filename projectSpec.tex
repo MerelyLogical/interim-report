@@ -29,8 +29,11 @@ common interface is agreed upon.
 The interface will be done using Qsys.
 The unit-level project will build different operators, which can have varying
 arithmetic functions and designs.
-These will be packaged into Qsys modules, which will become the DUTs of the
-testbench.
+These can be packaged into individual Qsys modules, as adders, multipliers,
+or dividers.
+Alternatively they can also be delivered as a single module taking two operands
+and an instruction that is one of the four basic arithmetic operations.
+These will then become the DUTs of the testbench.
 
 \subsection{Deliverables}
 At the end of the project, the system should be able to perform the following:

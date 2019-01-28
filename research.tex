@@ -33,8 +33,8 @@ specified at design-time.
 Once built, a 32-bit adder always adds 32 bits together, adding 16-bit numbers
 usually involves masking the unused bits.
 A possible way of making it less inefficient would be using SIMD
-instructions~\cite{Duncan1}, combining smaller operations into a larger
-one that fits the hardware.
+instructions~\cite{Duncan1}, splitting a large register into a few smaller ones,
+to execute the same instruction on them in parallel.
 This, however, has the tradeoff of being harder to program, and the applications
 must have sufficient parallelism to exploit.
 
@@ -92,22 +92,32 @@ frequency~\cite{Shi2}.
 % REVISIT JD: find better arguments for high radix on FPGA for these two paras
 \subsection{High-radix Arithmetic}
 Conventional designs of arithmetic operators use binary representations.
-This was chosen as the additional complexity of a high-radix operator does not
-always provide justifiable speedups except in specific
-cases~\cite{Kornerup1}\cite{Amin1}.
-However, using a high-radix representation system could still yield better
-numerical accuracy while reducing area cost for FPGAs.
-For example, a hexadecimal floating-point adder was shown to have a 30\% smaller
-area-time product than its binary counterpart, while still delivering equal
-worst-case and better average-case numerical accuracy~\cite{Catanzaro1}.
+The additional concerns of high-radix operators did not provide justifiable
+improvements as clock speed of processors kept increasing.
+In recent years, the clock speed increase effectively ended, and semiconductor
+dies shrunk to extremely small sizes.
+This means the relative processing time available in a clock period increased.
+This enabled and drove the desire for accomplishing more per clock cycle, and
+high-radix arithmetic is one of them.
+It has been shown that, high-radix offers power saving and/or reasonable
+speedups to the arithmetic operations~\cite{Catanzaro1}\cite{Amin1}\cite{Chen1}.
 
 However, the savings are not without trade-offs.
-This trade-off can become unfavourable if the specification requires much I/O
-and little computation~\cite{Whyte1}.
-This is because the overhead of radix conversion would be significant.
+If the radix chosen is not a power of 2, then this trade-off can become
+unfavourable if the specification requires much I/O
+and little computation.
+This is because overhead of radix conversion would be significant~\cite{Whyte1}.
 It is also unwise to use high-radix representations when the numbers are
 unusually small, thus making the savings offered by the high-radices
 negligible~\cite{Catanzaro1}.
+The radix also cannot be too high, as the time in a clock period is still
+limited, if there is too many logic gates for the signal to propagate through,
+it might become the critical path and slow down the overall design.
+
+The construct of FPGAs might make high-radices more attractive than it is on
+ICs.
+As FPGAs contain small fast carry-ripple adders, high-radix adders may be able
+to exploit them to obtain significant speedups~\cite{Kornerup1}.
 
 \subsection{High-radix Online Arithmetic}
 Using high-radix number representations for online arithmetic is a
@@ -122,4 +132,3 @@ practical insights along the way.
 Furthermore, benchmarking this exotic arithmetic system with popular FPGA
 applications such as neural networks would be interesting, as there is not
 much precedence for it.
-% REVISIT JD: find better arguments for high radix on FPGA for these two paras
