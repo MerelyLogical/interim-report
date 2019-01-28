@@ -1,0 +1,74 @@
+\documentclass[11pt]{article}
+\usepackage[margin=2cm]{geometry}
+\usepackage{cite}
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage[caption=false]{subfig}
+  \DeclareGraphicsExtensions{.png}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{url}
+\usepackage{tikz}
+\usetikzlibrary{shapes,arrows}
+\usepackage{bm,times}
+\usepackage{pgfgantt}
+\usepackage{indentfirst}
+\begin{document}
+
+\title{%
+  A High-radix Online Arithmetic Verification System\\
+  \large Final Year Project 1800478: Safety Assessment}
+\author{Zifan Wang, 01077639\\Imperial College London}
+
+% \markboth{2018-2019}{?}
+\maketitle
+
+\textbf{Electrical safety}\\
+There is no high voltage present on the development board.
+\\
+
+\textbf{Physical safety}\\
+There are no large or fast-moving objects involved.
+\\
+
+\textbf{Chemical safety}\\
+There is no poisonous or irritant or allergenic material.
+\\
+
+\textbf{Fire safety}\\
+It is possible that the SoC can get overheated.\\
+This should not result in a fire as the SoC is actively cooled and the system
+is temperature aware.
+\\
+
+\textbf{Biological safety}\\
+There are no biological hazards.
+\\
+
+\textbf{Animal safety}\\
+There are no animals involved.
+\\
+
+\textbf{Appliance safety}\\
+The board is certified by the department.\\
+The development tools can detect certain potentially damaging
+configurations and estimate power consumption.\\
+I will also care to avoid such designs\footnote{A. Agne et al, ``Seven recipes
+for setting your FPGA on fire -- A cookbook on heat generators''.} when
+constructing the project.
+\\
+
+\textbf{Airspace safety}\\
+There is no use of airspace.
+\\
+
+\textbf{Study Participant safety}\\
+There are no additional participants.
+\\
+
+\textbf{Data Infrastructure safety}\\
+It is useful to be able to access the development board remotely.\\
+I will ensure to be doing so in an safe environment while using secure methods
+of connection.
+
+\end{document}

@@ -48,19 +48,19 @@ At the end of the project, the system should be able to perform the following:
 The system itself will be built on a Cyclone V SX SoC Development Board from
 Intel~\cite{Intel1}.
 
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=10cm]{img/SoCStructure}
+  \caption{Structure of the System-on-Chip}
+  \label{SoCStructure}
+\end{figure}
+
 The 5CSXFC6D6F31C6N SoC has an Arm Cortex-A9 MPCore accompanied by Intel's 28nm
 FPGA fabric~\cite{Altera1}.
 The FPGA is necessary for implementing the hardware design and obtaining
 empirical results for the project.
 % maybe hybrid architecture soc makes programming it harder and it could
 % be used as a negative point
-
-\begin{figure}[H]
-  \centering
-  \includegraphics[width=8cm]{img/SoCStructure}
-  \caption{Structure of the System-on-Chip}
-  \label{SoCStructure}
-\end{figure}
 
 While an FPGA without an embedded CPU will be enough for this project to work,
 having an Hard Processor System (HPS) on the same chip is useful as the test

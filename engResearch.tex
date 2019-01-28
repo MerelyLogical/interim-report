@@ -186,6 +186,14 @@ returns back to its initial state.
 Thus this method will not be experimented.
 
 \subsubsection{Lazy Monitors}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=12cm]{img/LazMon}
+  \caption{Structure of a Lazy Monitor}
+  \label{LazMon}
+\end{figure}
+
 An more scalable alternative is to have the monitor only check a selection of
 data sets.
 For example, if the monitor is programmed to check every third test point,
@@ -199,6 +207,14 @@ However, this method needs the extra logic in the random controller, making the
 monitor slightly more complex than it probably should be.
 
 \subsubsection{Parallel Monitors}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=15cm]{img/ParMon}
+  \caption{Structure of a Parallel Monitor}
+  \label{ParMon}
+\end{figure}
+
 As the test data is uniform, the monitor can be parallelised in to a number of
 sub-monitors.
 The sub-monitors is connected to a arbiter that is connected to three FIFOs.
