@@ -212,7 +212,8 @@ This does not have data dependency on a random controller, and it can
 fully guarantee the correctness of the DUT.
 It is also scalable as more sub-monitors can be added it the DUT fills up its
 output buffer.
-As a downside, this method takes up the most FPGA resources to implement.
+As a downside, this method takes up the most FPGA resources to implement as it
+scales.
 
 Comparing across the three methods, the parallel monitors will be built first
 for this project, as it offers the best functionalities.

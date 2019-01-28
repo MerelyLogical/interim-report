@@ -92,7 +92,9 @@ frequency~\cite{Shi2}.
 % REVISIT JD: find better arguments for high radix on FPGA for these two paras
 \subsection{High-radix Arithmetic}
 Conventional designs of arithmetic operators use binary representations.
-This was chosen four decades ago to maximise numerical accuracy per bit of data.
+This was chosen as the additional complexity of a high-radix operator does not
+always provide justifiable speedups except in specific
+cases~\cite{Kornerup1}\cite{Amin1}.
 However, using a high-radix representation system could still yield better
 numerical accuracy while reducing area cost for FPGAs.
 For example, a hexadecimal floating-point adder was shown to have a 30\% smaller
@@ -110,7 +112,6 @@ negligible~\cite{Catanzaro1}.
 \subsection{High-radix Online Arithmetic}
 Using high-radix number representations for online arithmetic is a
 relatively novel concept.
-% REVISIT: can find problem with Lynch? his high-radix looks weird
 While there has been some research with similar
 premises~\cite{Lynch1}\cite{Lynch2},
 We take a more direct approach with this project by implementing custom
